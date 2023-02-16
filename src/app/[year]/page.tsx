@@ -1,4 +1,6 @@
 import colombianHolidays from "colombian-holidays";
+import { Header } from "../../components/header";
+import { Main } from "../../components/main";
 import { longDateFormatter } from "../../utils/date-helpers";
 import { getYears } from "../../utils/get-years";
 
@@ -13,15 +15,8 @@ export default function Year({ params }: YearProps) {
   });
   return (
     <>
-      <header className="grid place-items-center h-36 sm:h-48 bg-violet-600 text-white border-b-8 border-b-orange-600 gap-2 sm:gap-4">
-        <h1 className="text-3xl sm:text-4xl font-bold text-center self-end">
-          Colombian Holidays
-        </h1>
-        <h2 className="text-3xl sm:text-4xl font-bold self-start">
-          {params.year}
-        </h2>
-      </header>
-      <main className="py-8 w-96 mx-auto text-center">
+      <Header subtitle={params.year}>Colombian Holidays</Header>
+      <Main>
         <ol className="flex gap-4 flex-col">
           {holidays.map((holiday) => {
             return (
@@ -37,31 +32,7 @@ export default function Year({ params }: YearProps) {
             );
           })}
         </ol>
-      </main>
-      <footer className="text-center h-36 grid place-items-center bg-violet-600 text-white">
-        <div>
-          <p className="mb-6">
-            Check out the{" "}
-            <a
-              href="https://github.com/mauriciorobayo/colombian-holidays"
-              className="underline"
-            >
-              colombian-holidays
-            </a>{" "}
-            npm package to calculate colombian holidays.
-          </p>
-          <p>
-            This is an{" "}
-            <a
-              href="https://github.com/mauriciorobayo/is-colombian-holiday"
-              className="underline"
-            >
-              open source
-            </a>{" "}
-            project.
-          </p>
-        </div>
-      </footer>
+      </Main>
     </>
   );
 }
