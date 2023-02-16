@@ -32,7 +32,7 @@ export default function Year({ params }: YearProps) {
                 >
                   {longDateFormatter.format(holiday.celebrationDate)}
                 </time>
-                <div>{holiday.name.en}</div>
+                <div className="text-md sm:text-lg">{holiday.name.en}</div>
               </li>
             );
           })}
