@@ -1,5 +1,6 @@
 import colombianHolidays from "colombian-holidays";
 import { longDateFormatter } from "../../utils/date-helpers";
+import { getYears } from "../../utils/get-years";
 
 interface YearProps {
   params: {
@@ -66,12 +67,5 @@ export default function Year({ params }: YearProps) {
 }
 
 export function generateStaticParams() {
-  const totalYears = 100;
-  const currentYear = new Date().getUTCFullYear();
-  const startYear = currentYear - totalYears / 2;
-  const endYear = currentYear + totalYears / 2;
-
-  return Array.from({ length: endYear - startYear + 1 }, (_, i) => ({
-    year: String(i + startYear),
-  }));
+  return getYears().map((year) => ({ year: String(year) }));
 }
