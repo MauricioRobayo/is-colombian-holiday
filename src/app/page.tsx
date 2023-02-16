@@ -14,9 +14,6 @@ export default function Home() {
             <Link
               key={year}
               href={String(year)}
-
-
-              
               className="underline text-blue-700"
             >
               {year}
