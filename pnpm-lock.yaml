@@ -6,7 +6,7 @@ specifiers:
   '@types/react': 18.0.27
   '@types/react-dom': 18.0.10
   autoprefixer: ^10.4.13
-  colombian-holidays: ^2.0.0
+  colombian-holidays: ^2.0.2
   eslint: 8.33.0
   eslint-config-next: 13.1.6
   next: 13.1.6
@@ -22,7 +22,7 @@ dependencies:
   '@types/react': 18.0.27
   '@types/react-dom': 18.0.10
   autoprefixer: 10.4.13_postcss@8.4.21
-  colombian-holidays: 2.0.0
+  colombian-holidays: 2.0.2
   eslint: 8.33.0
   eslint-config-next: 13.1.6_4vsywjlpuriuw3tl5oq6zy5a64
   next: 13.1.6_biqbaboplfbrettd7655fr4n2y
@@ -584,8 +584,8 @@ packages:
     resolution: {integrity: sha512-IV3Ou0jSMzZrd3pZ48nLkT9DA7Ag1pnPzaiQhpW7c3RbcqqzvzzVu+L8gfqMp/8IM2MQtSiqaCxrrcfu8I8rMA==}
     dev: false
 
-  /colombian-holidays/2.0.0:
-    resolution: {integrity: sha512-Mn4AnmaqBH9SlDiEyWYBQF1Zjw83vQQmWQHPiy86QwL/36PeJS43kBXl+QHo4v9doeZTTLpU8mOyEc34JwVeqQ==}
+  /colombian-holidays/2.0.2:
+    resolution: {integrity: sha512-IWrDpLVVYrYLTKq/FCF4hfOx3AknwgdfFFkWJxqPwIuP+niRM1hoTUqSC98z56dpDVga0bq5AfH8zsWKZXUhRg==}
     dependencies:
       pascua: 2.1.6
     dev: false
