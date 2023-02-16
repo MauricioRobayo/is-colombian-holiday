@@ -9,12 +9,12 @@ export default function Home() {
     <>
       <Header>Colombian Holidays</Header>
       <Main>
-        <div className="grid gap-4 grid-cols-5">
+        <div className="grid grid-cols-5 gap-4">
           {years.map((year) => (
             <Link
               key={year}
               href={String(year)}
-              className="underline text-blue-700"
+              className="text-blue-700 underline"
             >
               {year}
             </Link>

@@ -6,11 +6,11 @@ interface HeaderProps {
 }
 export function Header({ children, subtitle }: HeaderProps) {
   return (
-    <header className="grid place-items-center h-36 sm:h-48 bg-violet-600 text-white border-b-8 border-b-orange-600 text-center">
+    <header className="grid h-36 place-items-center border-b-8 border-b-orange-600 bg-violet-600 text-center text-white sm:h-48">
       <div>
-        <h1 className="text-3xl sm:text-4xl font-bold">{children}</h1>
+        <h1 className="text-3xl font-bold sm:text-4xl">{children}</h1>
         {subtitle && (
-          <h2 className="text-3xl sm:text-4xl font-bold mt-2 sm:mt-4">
+          <h2 className="mt-2 text-3xl font-bold sm:mt-4 sm:text-4xl">
             {subtitle}
           </h2>
         )}

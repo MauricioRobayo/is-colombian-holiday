@@ -17,7 +17,7 @@ export default function Year({ params }: YearProps) {
     <>
       <Header subtitle={params.year}>Colombian Holidays</Header>
       <Main>
-        <ol className="flex gap-4 flex-col">
+        <ol className="flex flex-col gap-4">
           {holidays.map((holiday) => {
             return (
               <li key={holiday.name.en} className="">
