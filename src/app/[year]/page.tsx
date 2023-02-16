@@ -66,10 +66,10 @@ export default function Year({ params }: YearProps) {
 }
 
 export function generateStaticParams() {
-  const range = 100;
+  const totalYears = 100;
   const currentYear = new Date().getUTCFullYear();
-  const startYear = currentYear - range / 2;
-  const endYear = currentYear + range / 2;
+  const startYear = currentYear - totalYears / 2;
+  const endYear = currentYear + totalYears / 2;
 
   return Array.from({ length: endYear - startYear + 1 }, (_, i) => ({
     year: String(i + startYear),
