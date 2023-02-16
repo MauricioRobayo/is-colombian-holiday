@@ -7,7 +7,9 @@ interface YearProps {
   };
 }
 export default function Year({ params }: YearProps) {
-  const holidays = colombianHolidays(Number(params.year));
+  const holidays = colombianHolidays(Number(params.year), {
+    returnNativeDate: true,
+  });
   return (
     <>
       <header className="grid place-items-center h-36 sm:h-48 bg-violet-600 text-white border-b-8 border-b-orange-600 gap-2 sm:gap-4">
@@ -21,14 +23,13 @@ export default function Year({ params }: YearProps) {
       <main className="py-8 w-96 mx-auto text-center">
         <ol className="flex gap-4 flex-col">
           {holidays.map((holiday) => {
-            const date = new Date(holiday.celebrationDate);
             return (
               <li key={holiday.name.en} className="">
                 <time
                   className="text-xl sm:text-2xl"
-                  dateTime={date.toISOString()}
+                  dateTime={holiday.celebrationDate.toISOString()}
                 >
-                  {longDateFormatter.format(date)}
+                  {longDateFormatter.format(holiday.celebrationDate)}
                 </time>
                 <div>{holiday.name.en}</div>
               </li>
@@ -65,5 +66,12 @@ export default function Year({ params }: YearProps) {
 }
 
 export function generateStaticParams() {
-  return Array.from({ length: 100 }, (_, i) => ({ year: String(1984 + i) }));
+  const range = 100;
+  const currentYear = new Date().getUTCFullYear();
+  const startYear = currentYear - range / 2;
+  const endYear = currentYear + range / 2;
+
+  return Array.from({ length: endYear - startYear + 1 }, (_, i) => ({
+    year: String(i + startYear),
+  }));
 }
