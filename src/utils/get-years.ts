@@ -1,8 +1,9 @@
 export function getYears() {
-  const totalYears = 10;
+  const yearsRange = 25;
+  const halfYearsRange = Math.floor(yearsRange / 2);
   const currentYear = new Date().getUTCFullYear();
-  const startYear = currentYear - totalYears / 2;
-  const endYear = currentYear + totalYears / 2;
+  const startYear = currentYear - halfYearsRange;
+  const endYear = currentYear + halfYearsRange + (yearsRange % 2 === 1 ? 1 : 0);
 
   return Array.from({ length: endYear - startYear }, (_, i) => i + startYear);
 }

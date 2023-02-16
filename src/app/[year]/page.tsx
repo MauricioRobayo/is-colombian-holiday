@@ -1,7 +1,6 @@
-import colombianHolidays from "colombian-holidays";
 import { Header } from "../../components/header";
+import { HolidaysList } from "../../components/holidays-list";
 import { Main } from "../../components/main";
-import { longDateFormatter } from "../../utils/date-helpers";
 import { getYears } from "../../utils/get-years";
 
 interface YearProps {
@@ -10,28 +9,11 @@ interface YearProps {
   };
 }
 export default function Year({ params }: YearProps) {
-  const holidays = colombianHolidays(Number(params.year), {
-    returnNativeDate: true,
-  });
   return (
     <>
       <Header subtitle={params.year}>Colombian Holidays</Header>
       <Main>
-        <ol className="flex flex-col gap-4">
-          {holidays.map((holiday) => {
-            return (
-              <li key={holiday.name.en} className="">
-                <time
-                  className="text-xl sm:text-2xl"
-                  dateTime={holiday.celebrationDate.toISOString()}
-                >
-                  {longDateFormatter.format(holiday.celebrationDate)}
-                </time>
-                <div className="text-md sm:text-lg">{holiday.name.en}</div>
-              </li>
-            );
-          })}
-        </ol>
+        <HolidaysList year={Number(params.year)} />
       </Main>
     </>
   );
