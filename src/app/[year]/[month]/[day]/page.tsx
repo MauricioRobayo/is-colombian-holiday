@@ -1,5 +1,8 @@
 import { notFound } from "next/navigation";
-import { parseDateFromParams } from "../../../../utils/date-helpers";
+import { ColombianHolidays } from "../../../../components/colombian-holidays";
+import { getDate } from "../../../../utils/date-helpers";
+import { isHoliday } from "colombian-holidays/lib/utils/isHoliday";
+import colombianHolidays from "colombian-holidays";
 
 interface DayProps {
   params: {
@@ -9,26 +12,31 @@ interface DayProps {
   };
 }
 export default function Day({ params }: DayProps) {
-  const { year, month, day } = params;
-  const date = parseDateFromParams(year, month, day);
+  const year = Number(params.year);
+  const month = Number(params.month);
+  const day = Number(params.day);
+  const date = getDate(year, month, day);
 
-  if (Number.isNaN(date)) {
+  if (Number.isNaN(date.getTime())) {
     return notFound();
   }
 
-  return <div>{date}</div>;
+  return (
+    <ColombianHolidays year={year} month={month} day={day}>
+      {isHoliday(date) ? (
+        <div>Yeah, it is holiday :)</div>
+      ) : (
+        <div>Darn! not holiday :(</div>
+      )}
+    </ColombianHolidays>
+  );
 }
 
 export function generateStaticParams() {
-  const date = new Date();
-  const params: { year: string; month: string; day: string }[] = [];
-  for (let i = -100; i <= 100; i++) {
-    const currentDate = new Date(date.getUTCDate() - i);
-    params.push({
-      year: String(currentDate.getUTCFullYear()),
-      month: String(currentDate.getUTCMonth() + 1),
-      day: String(currentDate.getUTCDate()),
-    });
-  }
-  return params;
+  const holidays = colombianHolidays({ returnNativeDate: true });
+  return holidays.map((holiday) => ({
+    year: String(holiday.celebrationDate.getUTCFullYear()),
+    month: String(holiday.celebrationDate.getUTCMonth() + 1),
+    day: String(holiday.celebrationDate.getUTCDate()),
+  }));
 }

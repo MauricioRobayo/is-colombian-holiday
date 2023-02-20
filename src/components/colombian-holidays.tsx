@@ -13,6 +13,7 @@ interface ColombianHolidaysProps {
 export function ColombianHolidays({
   year,
   month: selectedMonth,
+  day: selectedDay,
   children,
 }: ColombianHolidaysProps) {
   const previousYear = year - 1;
@@ -37,11 +38,7 @@ export function ColombianHolidays({
       </div>
       <div className="mt-4 grid grid-cols-3">
         {months.map((month, i) =>
-          i + 1 === selectedMonth ? (
-            <div key={month} className="font-bold">
-              {month}
-            </div>
-          ) : (
+          i + 1 !== selectedMonth ? (
             <Link
               key={month}
               className="text-violet-400"
@@ -49,6 +46,10 @@ export function ColombianHolidays({
             >
               {month}
             </Link>
+          ) : (
+            <div key={month} className="font-bold">
+              {month}
+            </div>
           )
         )}
       </div>
