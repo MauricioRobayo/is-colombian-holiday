@@ -38,7 +38,7 @@ export function ColombianHolidays({
       </div>
       <div className="mt-4 grid grid-cols-3">
         {months.map((month, i) =>
-          i + 1 !== selectedMonth ? (
+          i + 1 !== selectedMonth || selectedDay ? (
             <Link
               key={month}
               className="text-violet-400"

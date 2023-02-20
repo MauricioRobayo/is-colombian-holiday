@@ -1,7 +1,7 @@
 import colombianHolidays from "colombian-holidays";
 import Link from "next/link";
 import { twMerge } from "tailwind-merge";
-import { longDateFormatter, timeAgo } from "../utils/date-helpers";
+import { longDateFormatterWithoutYear, timeAgo } from "../utils/date-helpers";
 
 interface HolidaysListProps {
   year: number;
@@ -41,7 +41,9 @@ export function HolidaysList({ year, month }: HolidaysListProps) {
               <time dateTime={holiday.celebrationDate.toISOString()}>
                 {(!isCurrentYear || !alreadyOver) && (
                   <div className={"text-xl sm:text-2xl"}>
-                    {longDateFormatter.format(holiday.celebrationDate)}
+                    {longDateFormatterWithoutYear.format(
+                      holiday.celebrationDate
+                    )}
                   </div>
                 )}
                 {isCurrentYear && (

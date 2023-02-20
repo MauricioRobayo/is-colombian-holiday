@@ -1,6 +1,6 @@
 export function Footer() {
   return (
-    <footer className="grid h-36 place-items-center bg-violet-600 text-center text-white">
+    <footer className="grid h-36 place-items-center bg-violet-600 p-4 text-center text-white">
       <div>
         <p className="mb-6">
           Check out the{" "}

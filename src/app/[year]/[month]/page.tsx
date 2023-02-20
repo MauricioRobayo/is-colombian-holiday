@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { ColombianHolidays } from "../../../components/colombian-holidays";
 import { HolidaysList } from "../../../components/holidays-list";
+import { parseDate } from "../../../utils/date-helpers";
 import { getYears } from "../../../utils/get-years";
 
 interface MonthProps {
@@ -13,7 +14,9 @@ export default function Month({ params }: MonthProps) {
   const year = Number(params.year);
   const month = Number(params.month);
 
-  if (Number.isNaN(year) || Number.isNaN(month)) {
+  const date = parseDate(year, month, 1);
+
+  if (Number.isNaN(date)) {
     return notFound();
   }
 
