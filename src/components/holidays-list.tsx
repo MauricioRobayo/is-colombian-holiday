@@ -37,9 +37,11 @@ export function HolidaysList({ year, month }: HolidaysListProps) {
               {holiday.name.en}
             </div>
             <time dateTime={holiday.celebrationDate.toISOString()}>
-              <div className={"text-xl sm:text-2xl"}>
-                {longDateFormatter.format(holiday.celebrationDate)}
-              </div>
+              {(!isCurrentYear || !alreadyOver) && (
+                <div className={"text-xl sm:text-2xl"}>
+                  {longDateFormatter.format(holiday.celebrationDate)}
+                </div>
+              )}
               {isCurrentYear && (
                 <div className="text-sm text-slate-400 sm:text-base">
                   {formatDistanceToNow(holiday.celebrationDate)}
