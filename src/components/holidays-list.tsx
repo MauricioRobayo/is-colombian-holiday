@@ -1,7 +1,10 @@
 import colombianHolidays from "colombian-holidays";
-import Link from "next/link";
+import { Link } from "@/components/link";
 import { twMerge } from "tailwind-merge";
 import { longDateFormatterWithoutYear, timeAgo } from "../utils/date-helpers";
+import { getMonths } from "../utils/get-months";
+import Image from "next/image";
+import cryingFace from "svg-emojis/twemoji/1f622.svg";
 
 interface HolidaysListProps {
   year: number;
@@ -16,6 +19,16 @@ export function HolidaysList({ year, month }: HolidaysListProps) {
   const today = new Date();
   const currentYear = today.getUTCFullYear();
   const isCurrentYear = currentYear === year;
+  const months = getMonths();
+
+  if (holidays.length === 0 && month) {
+    return (
+      <div className="flex flex-col items-center gap-4 text-2xl">
+        <p>No holidays on {months[month - 1]}.</p>
+        <Image src={cryingFace} alt="crying face" />
+      </div>
+    );
+  }
   return (
     <ol className="flex flex-col gap-4">
       {holidays.map((holiday) => {
