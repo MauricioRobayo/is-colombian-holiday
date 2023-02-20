@@ -14,3 +14,9 @@ export const relativeTimeFormatter = new Intl.RelativeTimeFormat("en-US", {
 
 TimeAgo.addDefaultLocale(en);
 export const timeAgo = new TimeAgo("en-US");
+
+export function parseDateFromParams(year: string, month: string, day: string) {
+  return Date.parse(
+    `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}T00:00:00.000Z`
+  );
+}

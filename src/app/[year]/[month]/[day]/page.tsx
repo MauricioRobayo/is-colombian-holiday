@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { parseDateFromParams } from "../../../../utils/date-helpers";
 
 interface DayProps {
   params: {
@@ -9,15 +10,13 @@ interface DayProps {
 }
 export default function Day({ params }: DayProps) {
   const { year, month, day } = params;
-  const date = new Date(
-    `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`
-  );
+  const date = parseDateFromParams(year, month, day);
 
-  if (Number.isNaN(date.getTime())) {
+  if (Number.isNaN(date)) {
     return notFound();
   }
 
-  return <div>{date.toISOString()}</div>;
+  return <div>{date}</div>;
 }
 
 export function generateStaticParams() {

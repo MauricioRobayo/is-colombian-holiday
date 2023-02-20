@@ -1,17 +1,19 @@
 import Link from "next/link";
+import { ReactNode } from "react";
 import { getMonths } from "../utils/get-months";
 import { Header } from "./header";
-import { HolidaysList } from "./holidays-list";
 import { Main } from "./main";
 
 interface ColombianHolidaysProps {
   year: number;
   month?: number;
   day?: number;
+  children: ReactNode;
 }
 export function ColombianHolidays({
   year,
   month: selectedMonth,
+  children,
 }: ColombianHolidaysProps) {
   const previousYear = year - 1;
   const nextYear = year + 1;
@@ -43,7 +45,7 @@ export function ColombianHolidays({
             <Link
               key={month}
               className="text-violet-400"
-              href={`${year}/${String(i + 1).padStart(2, "0")}`}
+              href={`${year}/${String(i + 1)}`}
             >
               {month}
             </Link>
@@ -55,9 +57,7 @@ export function ColombianHolidays({
   return (
     <>
       <Header subtitle={subtitle}>Colombian Holidays</Header>
-      <Main>
-        <HolidaysList year={Number(year)} month={selectedMonth} />
-      </Main>
+      <Main>{children}</Main>
     </>
   );
 }

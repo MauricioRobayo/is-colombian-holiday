@@ -26,7 +26,9 @@ export function HolidaysList({ year, month }: HolidaysListProps) {
               href={`/${holiday.celebrationDate
                 .toISOString()
                 .slice(0, 10)
-                .replaceAll("-", "/")}`}
+                .split("-")
+                .map(Number)
+                .join("/")}`}
             >
               <div
                 className={twMerge(

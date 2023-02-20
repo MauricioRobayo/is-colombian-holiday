@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { ColombianHolidays } from "../../../components/colombian-holidays";
+import { HolidaysList } from "../../../components/holidays-list";
 import { getYears } from "../../../utils/get-years";
 
 interface MonthProps {
@@ -16,7 +17,11 @@ export default function Month({ params }: MonthProps) {
     return notFound();
   }
 
-  return <ColombianHolidays year={year} month={month} />;
+  return (
+    <ColombianHolidays year={year} month={month}>
+      <HolidaysList year={Number(year)} month={month} />
+    </ColombianHolidays>
+  );
 }
 
 export function generateStaticParams() {
