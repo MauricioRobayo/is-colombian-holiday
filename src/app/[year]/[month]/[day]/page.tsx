@@ -1,8 +1,12 @@
 import { notFound } from "next/navigation";
+import Image from "next/image";
 import { ColombianHolidays } from "../../../../components/colombian-holidays";
-import { getDate } from "../../../../utils/date-helpers";
+import { getDate, longDateFormatter } from "../../../../utils/date-helpers";
 import { isHoliday } from "colombian-holidays/lib/utils/isHoliday";
 import colombianHolidays from "colombian-holidays";
+import smileyFace from "svg-emojis/twemoji/1f603.svg";
+import stars from "svg-emojis/twemoji/2728.svg";
+import cryingFace from "svg-emojis/twemoji/1f622.svg";
 
 interface DayProps {
   params: {
@@ -23,11 +27,24 @@ export default function Day({ params }: DayProps) {
 
   return (
     <ColombianHolidays year={year} month={month} day={day}>
-      {isHoliday(date) ? (
-        <div>Yeah, it is holiday :)</div>
-      ) : (
-        <div>Darn! not holiday :(</div>
-      )}
+      <div className="flex flex-col items-center gap-4 text-2xl">
+        <p>{longDateFormatter.format(date)}</p>
+        {isHoliday(date) ? (
+          <>
+            <p className="flex gap-4 uppercase">
+              <Image src={stars} alt="stars" />
+              Is holiday
+              <Image src={stars} alt="stars" />
+            </p>
+            <Image src={smileyFace} alt="smiley face" />
+          </>
+        ) : (
+          <>
+            <p>Not holiday</p>
+            <Image src={cryingFace} alt="crying face" />
+          </>
+        )}
+      </div>
     </ColombianHolidays>
   );
 }

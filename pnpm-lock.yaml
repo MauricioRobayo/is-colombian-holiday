@@ -16,6 +16,7 @@ specifiers:
   prettier-plugin-tailwindcss: ^0.2.3
   react: 18.2.0
   react-dom: 18.2.0
+  svg-emojis: ^0.0.8
   tailwind-merge: ^1.9.1
   tailwindcss: ^3.2.6
   typescript: 4.9.5
@@ -34,6 +35,7 @@ dependencies:
   postcss: 8.4.21
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
+  svg-emojis: 0.0.8
   tailwindcss: 3.2.6_postcss@8.4.21
   typescript: 4.9.5
 
@@ -2359,6 +2361,10 @@ packages:
   /supports-preserve-symlinks-flag/1.0.0:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
+    dev: false
+
+  /svg-emojis/0.0.8:
+    resolution: {integrity: sha512-TIoO4BwZX8MgIRss6oaOPFK2kT6CmisO065fUmr5gv0dDvKF5UobTmFCBEw7CnrapTxxolX+LTxQ+E/5AKRb6g==}
     dev: false
 
   /synckit/0.8.5:
