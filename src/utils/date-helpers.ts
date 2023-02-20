@@ -1,3 +1,4 @@
+import { FIRST_HOLIDAY_YEAR, LAST_HOLIDAY_YEAR } from "colombian-holidays";
 import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en";
 
@@ -23,12 +24,13 @@ TimeAgo.addDefaultLocale(en);
 export const timeAgo = new TimeAgo("en-US");
 
 export function getDate(year: number, month: number, day: number) {
-  const paddedMonth = String(month).padStart(2, "0");
-  const paddedDay = String(day).padStart(2, "0");
-  return new Date(`${year}-${paddedMonth}-${paddedDay}T00:00:00.000Z`);
+  return new Date(parseDate(year, month, day));
 }
 
 export function parseDate(year: number, month: number, day: number) {
+  if (year < FIRST_HOLIDAY_YEAR || year > LAST_HOLIDAY_YEAR) {
+    return Number.NaN;
+  }
   const paddedMonth = String(month).padStart(2, "0");
   const paddedDay = String(day).padStart(2, "0");
   return Date.parse(`${year}-${paddedMonth}-${paddedDay}T00:00:00.000Z`);

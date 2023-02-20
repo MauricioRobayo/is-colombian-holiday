@@ -14,9 +14,7 @@ export default function Month({ params }: MonthProps) {
   const year = Number(params.year);
   const month = Number(params.month);
 
-  const date = parseDate(year, month, 1);
-
-  if (Number.isNaN(date)) {
+  if (Number.isNaN(parseDate(year, month, 1))) {
     return notFound();
   }
 
