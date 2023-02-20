@@ -1,24 +1,17 @@
 import colombianHolidays from "colombian-holidays";
-import {
-  longDateFormatter,
-  relativeDateDifference,
-} from "../utils/date-helpers";
-import formatDistanceToNow from "date-fns/formatDistanceToNow";
 import { twMerge } from "tailwind-merge";
+import { longDateFormatter, timeAgo } from "../utils/date-helpers";
 
 interface HolidaysListProps {
   year: number;
   month?: number;
 }
 export function HolidaysList({ year, month }: HolidaysListProps) {
-  const allHolidays = colombianHolidays(Number(year), {
+  const holidays = colombianHolidays({
+    year,
+    month,
     returnNativeDate: true,
   });
-  const holidays = month
-    ? allHolidays.filter(
-        (holiday) => holiday.celebrationDate.getUTCMonth() + 1 === month
-      )
-    : allHolidays;
   const today = new Date();
   const currentYear = today.getUTCFullYear();
   const isCurrentYear = currentYear === year;
@@ -44,7 +37,7 @@ export function HolidaysList({ year, month }: HolidaysListProps) {
               )}
               {isCurrentYear && (
                 <div className="text-sm text-slate-400 sm:text-base">
-                  {formatDistanceToNow(holiday.celebrationDate)}
+                  {timeAgo.format(holiday.celebrationDate)}
                 </div>
               )}
             </time>
