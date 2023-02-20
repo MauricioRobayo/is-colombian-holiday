@@ -1,4 +1,5 @@
 import colombianHolidays from "colombian-holidays";
+import Link from "next/link";
 import { twMerge } from "tailwind-merge";
 import { longDateFormatter, timeAgo } from "../utils/date-helpers";
 
@@ -21,26 +22,33 @@ export function HolidaysList({ year, month }: HolidaysListProps) {
         const alreadyOver = holiday.celebrationDate < today;
         return (
           <li key={holiday.name.en} className="">
-            <div
-              className={twMerge(
-                "text-md sm:text-lg",
-                isCurrentYear && alreadyOver && "text-slate-400"
-              )}
+            <Link
+              href={`/${holiday.celebrationDate
+                .toISOString()
+                .slice(0, 10)
+                .replaceAll("-", "/")}`}
             >
-              {holiday.name.en}
-            </div>
-            <time dateTime={holiday.celebrationDate.toISOString()}>
-              {(!isCurrentYear || !alreadyOver) && (
-                <div className={"text-xl sm:text-2xl"}>
-                  {longDateFormatter.format(holiday.celebrationDate)}
-                </div>
-              )}
-              {isCurrentYear && (
-                <div className="text-sm text-slate-400 sm:text-base">
-                  {timeAgo.format(holiday.celebrationDate)}
-                </div>
-              )}
-            </time>
+              <div
+                className={twMerge(
+                  "text-md sm:text-lg",
+                  isCurrentYear && alreadyOver && "text-slate-400"
+                )}
+              >
+                {holiday.name.en}
+              </div>
+              <time dateTime={holiday.celebrationDate.toISOString()}>
+                {(!isCurrentYear || !alreadyOver) && (
+                  <div className={"text-xl sm:text-2xl"}>
+                    {longDateFormatter.format(holiday.celebrationDate)}
+                  </div>
+                )}
+                {isCurrentYear && (
+                  <div className="text-sm text-slate-400 sm:text-base">
+                    {timeAgo.format(holiday.celebrationDate)}
+                  </div>
+                )}
+              </time>
+            </Link>
           </li>
         );
       })}
