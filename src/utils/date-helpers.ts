@@ -23,21 +23,3 @@ export function relativeDateDifference(startDate: Date, endDate: Date): string {
 
   return relativeTimeFormatter.format(daysDiff, "days");
 }
-
-export function relativeTime(days: number): string {
-  const absDays = Math.abs(days);
-
-  if (absDays > 365) {
-    return relativeTimeFormatter.format(Math.floor(days / 365), "years");
-  }
-
-  if (absDays > 30) {
-    return relativeTimeFormatter.format(Math.floor(days / 30), "months");
-  }
-
-  if (absDays > 7) {
-    return relativeTimeFormatter.format(Math.floor(days / 7), "weeks");
-  }
-
-  return relativeTimeFormatter.format(days, "days");
-}

@@ -2,38 +2,51 @@ import colombianHolidays from "colombian-holidays";
 import {
   longDateFormatter,
   relativeDateDifference,
-  relativeTime,
 } from "../utils/date-helpers";
+import formatDistanceToNow from "date-fns/formatDistanceToNow";
+import { twMerge } from "tailwind-merge";
 
 interface HolidaysListProps {
   year: number;
+  month?: number;
 }
-export function HolidaysList({ year }: HolidaysListProps) {
-  const holidays = colombianHolidays(Number(year), {
+export function HolidaysList({ year, month }: HolidaysListProps) {
+  const allHolidays = colombianHolidays(Number(year), {
     returnNativeDate: true,
   });
+  const holidays = month
+    ? allHolidays.filter(
+        (holiday) => holiday.celebrationDate.getUTCMonth() + 1 === month
+      )
+    : allHolidays;
   const today = new Date();
   const currentYear = today.getUTCFullYear();
   return (
     <ol className="flex flex-col gap-4">
       {holidays.map((holiday) => {
-        const daysDiff = Math.floor(
-          (holiday.celebrationDate.getTime() - Date.now()) / 1000 / 60 / 60 / 24
-        );
+        const alreadyOver = holiday.celebrationDate < today;
         return (
           <li key={holiday.name.en} className="">
-            <div className="text-md sm:text-lg">{holiday.name.en}</div>
-            <time
-              className="text-xl sm:text-2xl"
-              dateTime={holiday.celebrationDate.toISOString()}
+            <div
+              className={twMerge(
+                "text-md sm:text-lg",
+                alreadyOver && "text-slate-400"
+              )}
             >
-              {longDateFormatter.format(holiday.celebrationDate)}
+              {holiday.name.en}
+            </div>
+            <time dateTime={holiday.celebrationDate.toISOString()}>
+              {!alreadyOver && (
+                <div className={"text-xl sm:text-2xl"}>
+                  {longDateFormatter.format(holiday.celebrationDate)}
+                </div>
+              )}
+              {currentYear === year && (
+                <div className="text-sm text-slate-400 sm:text-base">
+                  {formatDistanceToNow(holiday.celebrationDate)}
+                </div>
+              )}
             </time>
-            {currentYear === year && (
-              <div>
-                {relativeDateDifference(today, holiday.celebrationDate)}
-              </div>
-            )}
           </li>
         );
       })}

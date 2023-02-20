@@ -1,6 +1,5 @@
-import { Header } from "../../components/header";
-import { HolidaysList } from "../../components/holidays-list";
-import { Main } from "../../components/main";
+import { notFound } from "next/navigation";
+import { ColombianHolidays } from "../../components/colombian-holidays";
 import { getYears } from "../../utils/get-years";
 
 interface YearProps {
@@ -9,14 +8,13 @@ interface YearProps {
   };
 }
 export default function Year({ params }: YearProps) {
-  return (
-    <>
-      <Header subtitle={params.year}>Colombian Holidays</Header>
-      <Main>
-        <HolidaysList year={Number(params.year)} />
-      </Main>
-    </>
-  );
+  const year = Number(params.year);
+
+  if (Number.isNaN(year)) {
+    return notFound();
+  }
+
+  return <ColombianHolidays year={year} />;
 }
 
 export function generateStaticParams() {
