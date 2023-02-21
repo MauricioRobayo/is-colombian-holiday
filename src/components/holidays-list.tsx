@@ -1,5 +1,5 @@
 import colombianHolidays from "colombian-holidays";
-import { Link } from "@/components/link";
+import Link from "next/link";
 import { twMerge } from "tailwind-merge";
 import { longDateFormatterWithoutYear, timeAgo } from "../utils/date-helpers";
 import { getMonths } from "../utils/get-months";
