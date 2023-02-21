@@ -16,4 +16,4 @@ jobs:
           node-version: "16"
           cache: "pnpm"
       - run: pnpm install
-      - run: node ./scripts/exponential-retry-back-off.js ${{ secrets.VERCEL_DEPLOYMENT_HOOK }}
+      - run: node ./scripts/exponential-retry-back-off.js ${{ secrets.DEPLOYMENT_HOOK_URL }}
