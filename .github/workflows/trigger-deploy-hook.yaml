@@ -1,0 +1,19 @@
+name: trigger-deploy-hook
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 5 * * *"
+jobs:
+  trigger-deploy-hook:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: pnpm/action-setup@v2.2.4
+        with:
+          version: 7
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "16"
+          cache: "pnpm"
+      - run: pnpm install
+      - run: node ./pypweb/scripts/exponential-retry-back-off.js ${{ secrets.VERCEL_DEPLOYMENT_HOOK }}
