@@ -3,6 +3,7 @@ import { longDateFormatter, timeAgo } from "@/utils/date-helpers";
 import { useMemo } from "react";
 import cn from "clsx";
 import { Celebration } from "../celebration";
+import { Card } from "../card";
 
 interface ListItemProps {
   date: Date;
@@ -24,13 +25,7 @@ export function HolidayListItem({ date, name, dim, highlight }: ListItemProps) {
     [date]
   );
   return (
-    <li
-      className={cn("rounded-lg border-2  bg-white p-4 shadow-sm transition", {
-        "bg-slate-200 opacity-50": dim,
-        "border-orange-200 hover:scale-105 hover:shadow-md": !dim,
-        "bg-amber-50": highlight,
-      })}
-    >
+    <Card dim={dim} highlight={highlight} as="li">
       <Link href={path} className="flex flex-col justify-center gap-2">
         <time
           dateTime={date.toISOString()}
@@ -59,6 +54,6 @@ export function HolidayListItem({ date, name, dim, highlight }: ListItemProps) {
           </div>
         </time>
       </Link>
-    </li>
+    </Card>
   );
 }

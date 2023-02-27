@@ -33,13 +33,13 @@ export function HolidaysList({ year, month }: HolidaysListProps) {
   }
   return (
     <ol className="flex flex-col gap-4">
-      {holidaysWithUpcomingHoliday.map((holiday, index) => {
+      {holidaysWithUpcomingHoliday.map((holiday) => {
         const isCurrentYear =
           holiday.celebrationDate.getUTCFullYear() === today.getUTCFullYear();
         const isOver = isCurrentYear && holiday.celebrationDate < today;
         return (
           <HolidayListItem
-            key={holiday.celebrationDate.toISOString()}
+            key={holiday.name.en}
             date={holiday.celebrationDate}
             name={holiday.name.en}
             dim={isCurrentYear && isOver && !month}

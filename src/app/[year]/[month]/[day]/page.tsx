@@ -7,6 +7,7 @@ import cryingFace from "svg-emojis/twemoji/1f622.svg";
 import { ColombianHolidays } from "@/components/colombian-holidays";
 import { Celebration as Celebration } from "@/components/celebration";
 import smileyFace from "svg-emojis/twemoji/1f603.svg";
+import { Card } from "@/components/card";
 
 interface DayProps {
   params: {
@@ -27,7 +28,10 @@ export default function Day({ params }: DayProps) {
 
   return (
     <ColombianHolidays year={year} month={month} day={day}>
-      <div className="flex flex-col items-center gap-4 text-2xl">
+      <Card
+        className="flex flex-col items-center gap-4 p-8 text-2xl"
+        disableHover
+      >
         <p>{longDateFormatter.format(date)}</p>
         {isHoliday(date) ? (
           <>
@@ -42,7 +46,7 @@ export default function Day({ params }: DayProps) {
             <Image src={cryingFace} alt="crying face" />
           </>
         )}
-      </div>
+      </Card>
     </ColombianHolidays>
   );
 }
