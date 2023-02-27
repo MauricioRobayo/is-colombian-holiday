@@ -7,7 +7,8 @@ specifiers:
   '@types/react-dom': 18.0.10
   autoprefixer: ^10.4.13
   axios: ^1.3.3
-  colombian-holidays: ^4.0.0
+  clsx: ^1.2.1
+  colombian-holidays: ^4.0.1
   eslint: 8.33.0
   eslint-config-next: 13.1.6
   javascript-time-ago: ^2.5.9
@@ -29,7 +30,8 @@ dependencies:
   '@types/react-dom': 18.0.10
   autoprefixer: 10.4.13_postcss@8.4.21
   axios: 1.3.3
-  colombian-holidays: 4.0.0
+  clsx: 1.2.1
+  colombian-holidays: 4.0.1
   eslint: 8.33.0
   eslint-config-next: 13.1.6_4vsywjlpuriuw3tl5oq6zy5a64
   javascript-time-ago: 2.5.9
@@ -612,8 +614,13 @@ packages:
     resolution: {integrity: sha512-IV3Ou0jSMzZrd3pZ48nLkT9DA7Ag1pnPzaiQhpW7c3RbcqqzvzzVu+L8gfqMp/8IM2MQtSiqaCxrrcfu8I8rMA==}
     dev: false
 
-  /colombian-holidays/4.0.0:
-    resolution: {integrity: sha512-0Bf39IMHfhM7ImEN1ZeOdvoEKB2OJZxOlGEdkLG4D7KJiAD/COYcC7C3zIaVgIOJ8T/NAIVSXBn3x3huhR8bkw==}
+  /clsx/1.2.1:
+    resolution: {integrity: sha512-EcR6r5a8bj6pu3ycsa/E/cKVGuTgZJZdsyUYHOksG/UHIiKfjxzRxYJpyVBwYaQeOvghal9fcc4PidlgzugAQg==}
+    engines: {node: '>=6'}
+    dev: false
+
+  /colombian-holidays/4.0.1:
+    resolution: {integrity: sha512-sz3XKbomrW0S0cv+CkjXOdu/rNu8XHzpU+ZBgmc+UzJflbWEDPfFCfHiqPTmf2OY8UWURXRdvu2GGbyvQ5WzMw==}
     dependencies:
       pascua: 2.1.6
     dev: false

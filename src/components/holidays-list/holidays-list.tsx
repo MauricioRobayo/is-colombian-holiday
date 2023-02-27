@@ -25,7 +25,7 @@ export function HolidaysList({ year, month }: HolidaysListProps) {
     );
   }
   return (
-    <ol className="flex flex-col gap-3">
+    <ol className="flex flex-col gap-4">
       {holidays.map((holiday) => {
         return (
           <HolidayListItem
