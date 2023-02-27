@@ -5,10 +5,7 @@ type LinkProps = NextLinkProps & React.HTMLAttributes<HTMLAnchorElement>;
 
 export function Link({ className, children, ...props }: LinkProps) {
   return (
-    <NextLink
-      className={twMerge("text-blue-600 underline", className)}
-      {...props}
-    >
+    <NextLink className={twMerge("text-blue-600", className)} {...props}>
       {children}
     </NextLink>
   );

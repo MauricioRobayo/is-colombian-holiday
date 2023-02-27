@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { ColombianHolidays } from "../../../components/colombian-holidays";
-import { HolidaysList } from "../../../components/holidays-list";
+import { HolidaysList } from "../../../components/holidays-list/holidays-list";
 import { parseDate } from "../../../utils/date-helpers";
 import { getYears } from "../../../utils/get-years";
 

@@ -18,7 +18,7 @@ specifiers:
   react: 18.2.0
   react-dom: 18.2.0
   svg-emojis: ^0.0.8
-  tailwind-merge: ^1.9.1
+  tailwind-merge: ^1.10.0
   tailwindcss: ^3.2.6
   typescript: 4.9.5
 
@@ -38,13 +38,13 @@ dependencies:
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   svg-emojis: 0.0.8
+  tailwind-merge: 1.10.0
   tailwindcss: 3.2.6_postcss@8.4.21
   typescript: 4.9.5
 
 devDependencies:
   prettier: 2.8.4
   prettier-plugin-tailwindcss: 0.2.3_prettier@2.8.4
-  tailwind-merge: 1.9.1
 
 packages:
 
@@ -2438,9 +2438,9 @@ packages:
       tslib: 2.5.0
     dev: false
 
-  /tailwind-merge/1.9.1:
-    resolution: {integrity: sha512-ED9MkiUHlmfh58EC1xHRqXcH1IQyRtmDP0AmXlugYkP2tvfu7ejtjFEHJLJt93mQ7ZJkcqSIgm9M394bq5vOJg==}
-    dev: true
+  /tailwind-merge/1.10.0:
+    resolution: {integrity: sha512-WFnDXSS4kFTZwjKg5/oZSGzBRU/l+qcbv5NVTzLUQvJ9yovDAP05h0F2+ZFW0Lw9EcgRoc2AfURUdZvnEFrXKg==}
+    dev: false
 
   /tailwindcss/3.2.6_postcss@8.4.21:
     resolution: {integrity: sha512-BfgQWZrtqowOQMC2bwaSNe7xcIjdDEgixWGYOd6AL0CbKHJlvhfdbINeAW76l1sO+1ov/MJ93ODJ9yluRituIw==}

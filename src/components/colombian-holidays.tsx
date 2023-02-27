@@ -57,7 +57,9 @@ export function ColombianHolidays({
   );
   return (
     <>
-      <Header subtitle={subtitle}>Colombian Holidays</Header>
+      <Header subtitle={subtitle}>
+        <Link href="/">Colombian Holidays</Link>
+      </Header>
       <Main>{children}</Main>
     </>
   );

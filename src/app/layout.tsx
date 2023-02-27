@@ -1,4 +1,3 @@
-import { useSearchParams } from "next/navigation";
 import { Footer } from "../components/footer";
 import "./globals.css";
 
@@ -14,7 +13,7 @@ export default function RootLayout({
         head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
       */}
       <head />
-      <body>
+      <body className="flex h-screen flex-col justify-between bg-slate-100 text-slate-600">
         {children}
         <Footer />
       </body>

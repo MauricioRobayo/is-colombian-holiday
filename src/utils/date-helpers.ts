@@ -2,13 +2,7 @@ import { FIRST_HOLIDAY_YEAR, LAST_HOLIDAY_YEAR } from "colombian-holidays";
 import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en";
 
-export const longDateFormatterWithoutYear = new Intl.DateTimeFormat("en-US", {
-  weekday: "long",
-  month: "long",
-  day: "numeric",
-});
-
-export const longDateFormatterWithYear = new Intl.DateTimeFormat("en-US", {
+export const longDateFormatter = new Intl.DateTimeFormat("en-US", {
   weekday: "long",
   month: "long",
   day: "numeric",
