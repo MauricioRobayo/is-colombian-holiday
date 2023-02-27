@@ -3,10 +3,10 @@ import Image from "next/image";
 import { getDate, longDateFormatter } from "@/utils/date-helpers";
 import { isHoliday } from "colombian-holidays/lib/utils/isHoliday";
 import colombianHolidays from "colombian-holidays";
-import smileyFace from "svg-emojis/twemoji/1f603.svg";
-import stars from "svg-emojis/twemoji/2728.svg";
 import cryingFace from "svg-emojis/twemoji/1f622.svg";
 import { ColombianHolidays } from "@/components/colombian-holidays";
+import { Celebration as Celebration } from "@/components/celebration";
+import smileyFace from "svg-emojis/twemoji/1f603.svg";
 
 interface DayProps {
   params: {
@@ -31,11 +31,9 @@ export default function Day({ params }: DayProps) {
         <p>{longDateFormatter.format(date)}</p>
         {isHoliday(date) ? (
           <>
-            <p className="flex gap-4 font-bold uppercase">
-              <Image src={stars} alt="stars" />
-              Is holiday!
-              <Image src={stars} alt="stars" />
-            </p>
+            <Celebration className="h-16 font-bold uppercase">
+              Is Holiday!
+            </Celebration>
             <Image src={smileyFace} alt="smiley face" />
           </>
         ) : (
