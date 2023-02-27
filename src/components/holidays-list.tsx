@@ -14,7 +14,7 @@ export function HolidaysList({ year, month }: HolidaysListProps) {
   const holidays = colombianHolidays({
     year,
     month,
-    returnNativeDate: true,
+    valueAsDate: true,
   });
   const today = new Date();
   const currentYear = today.getUTCFullYear();

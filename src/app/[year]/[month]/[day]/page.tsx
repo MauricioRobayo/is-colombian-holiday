@@ -50,7 +50,7 @@ export default function Day({ params }: DayProps) {
 }
 
 export function generateStaticParams() {
-  const holidays = colombianHolidays({ returnNativeDate: true });
+  const holidays = colombianHolidays({ valueAsDate: true });
   return holidays.map((holiday) => ({
     year: String(holiday.celebrationDate.getUTCFullYear()),
     month: String(holiday.celebrationDate.getUTCMonth() + 1),

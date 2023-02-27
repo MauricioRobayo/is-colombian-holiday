@@ -1,3 +1,4 @@
+import { useSearchParams } from "next/navigation";
 import { Footer } from "../components/footer";
 import "./globals.css";
 
