@@ -6,7 +6,7 @@ import colombianHolidays from "colombian-holidays";
 import cryingFace from "svg-emojis/twemoji/1f622.svg";
 import { ColombianHolidays } from "@/components/colombian-holidays";
 import { Celebration as Celebration } from "@/components/celebration";
-import smileyFace from "svg-emojis/twemoji/1f603.svg";
+import smileyFace from "svg-emojis/twemoji/1f600.svg";
 import { Card } from "@/components/card";
 
 interface DayProps {
