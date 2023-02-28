@@ -43,7 +43,7 @@ export function HolidayListItem({ date, name, dim, highlight }: ListItemProps) {
           >
             <div>{name}</div>
             {highlight ? (
-              <Celebration className="h-6 gap-0 text-sm">
+              <Celebration className="h-6 gap-2 text-sm">
                 {relativeTime}
               </Celebration>
             ) : (
