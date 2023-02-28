@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { ReactNode } from "react";
-import stars from "svg-emojis/twemoji/2728.svg";
+import stars from "svg-emojis/twemoji/1f386.svg";
+
 import { twMerge } from "tailwind-merge";
 
 interface CelebrationProps {
@@ -9,15 +10,19 @@ interface CelebrationProps {
 }
 export function Celebration({ className, children }: CelebrationProps) {
   return (
-    <p
+    <div
       className={twMerge(
         "flex h-4 items-center justify-center gap-4",
         className
       )}
     >
       <Image src={stars} alt="stars" className="h-full" />
-      {children}
-      <Image src={stars} alt="stars" className="h-full" />
-    </p>
+      <span className="flex-shrink-0">{children}</span>
+      <Image
+        src={stars}
+        alt="stars"
+        className="h-full place-self-start self-start"
+      />
+    </div>
   );
 }
