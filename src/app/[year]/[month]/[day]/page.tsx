@@ -3,10 +3,10 @@ import Image from "next/image";
 import { getDate, longDateFormatter } from "@/utils/date-helpers";
 import { isHoliday } from "colombian-holidays/lib/utils/isHoliday";
 import colombianHolidays from "colombian-holidays";
-import cryingFace from "svg-emojis/twemoji/1f622.svg";
+import sadFace from "svg-emojis/twemoji/1f641.svg";
 import { ColombianHolidays } from "@/components/colombian-holidays";
 import { Celebration as Celebration } from "@/components/celebration";
-import smileyFace from "svg-emojis/twemoji/1f603.svg";
+import happyFace from "svg-emojis/twemoji/1f600.svg";
 import { Card } from "@/components/card";
 
 interface DayProps {
@@ -29,21 +29,21 @@ export default function Day({ params }: DayProps) {
   return (
     <ColombianHolidays year={year} month={month} day={day}>
       <Card
-        className="flex flex-col items-center gap-4 border-4 border-orange-600 p-8 text-2xl"
+        className="flex flex-col items-center gap-4 p-8 text-xl"
         disableHover
       >
         <p>{longDateFormatter.format(date)}</p>
         {isHoliday(date) ? (
           <>
-            <Celebration className="h-16 font-bold uppercase">
-              Is Holiday!
+            <Celebration className="h-16 text-2xl font-bold">
+              Is holiday!
             </Celebration>
-            <Image src={smileyFace} alt="smiley face" />
+            <Image src={happyFace} alt="smiley face" />
           </>
         ) : (
           <>
-            <p>Not holiday</p>
-            <Image src={cryingFace} alt="crying face" />
+            <p className="text-2xl font-bold">Not holiday.</p>
+            <Image src={sadFace} alt="crying face" />
           </>
         )}
       </Card>
