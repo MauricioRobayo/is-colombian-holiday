@@ -3,6 +3,7 @@ import { ReactNode } from "react";
 import { getMonths } from "../utils/get-months";
 import { Header } from "./header";
 import { Main } from "./main";
+import cn from "clsx";
 
 interface ColombianHolidaysProps {
   year: number;
@@ -41,7 +42,10 @@ export function ColombianHolidays({
           i + 1 !== selectedMonth || selectedDay ? (
             <Link
               key={month}
-              className="text-violet-400"
+              className={cn("text-violet-400", {
+                "font-bold": selectedDay && selectedMonth === i + 1,
+                "text-white": selectedDay && selectedMonth === i + 1,
+              })}
               href={`${year}/${String(i + 1)}`}
             >
               {month}
@@ -57,7 +61,9 @@ export function ColombianHolidays({
   );
   return (
     <>
-      <Header subtitle={subtitle}>Colombian Holidays</Header>
+      <Header subtitle={subtitle}>
+        <Link href="/">Colombian Holidays</Link>
+      </Header>
       <Main>{children}</Main>
     </>
   );

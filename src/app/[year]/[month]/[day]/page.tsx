@@ -1,12 +1,13 @@
 import { notFound } from "next/navigation";
 import Image from "next/image";
-import { getDate, longDateFormatterWithYear } from "@/utils/date-helpers";
+import { getDate, longDateFormatter } from "@/utils/date-helpers";
 import { isHoliday } from "colombian-holidays/lib/utils/isHoliday";
 import colombianHolidays from "colombian-holidays";
-import smileyFace from "svg-emojis/twemoji/1f603.svg";
-import stars from "svg-emojis/twemoji/2728.svg";
 import cryingFace from "svg-emojis/twemoji/1f622.svg";
 import { ColombianHolidays } from "@/components/colombian-holidays";
+import { Celebration as Celebration } from "@/components/celebration";
+import smileyFace from "svg-emojis/twemoji/1f603.svg";
+import { Card } from "@/components/card";
 
 interface DayProps {
   params: {
@@ -27,15 +28,16 @@ export default function Day({ params }: DayProps) {
 
   return (
     <ColombianHolidays year={year} month={month} day={day}>
-      <div className="flex flex-col items-center gap-4 text-2xl">
-        <p>{longDateFormatterWithYear.format(date)}</p>
+      <Card
+        className="flex flex-col items-center gap-4 border-4 border-orange-600 p-8 text-2xl"
+        disableHover
+      >
+        <p>{longDateFormatter.format(date)}</p>
         {isHoliday(date) ? (
           <>
-            <p className="flex gap-4 font-bold uppercase">
-              <Image src={stars} alt="stars" />
-              Is holiday
-              <Image src={stars} alt="stars" />
-            </p>
+            <Celebration className="h-16 font-bold uppercase">
+              Is Holiday!
+            </Celebration>
             <Image src={smileyFace} alt="smiley face" />
           </>
         ) : (
@@ -44,7 +46,7 @@ export default function Day({ params }: DayProps) {
             <Image src={cryingFace} alt="crying face" />
           </>
         )}
-      </div>
+      </Card>
     </ColombianHolidays>
   );
 }
