@@ -21,11 +21,10 @@ export function Card({
   return (
     <As
       className={twMerge(
-        "rounded-lg border-2  bg-white p-4 shadow-sm ",
+        "rounded-lg border-2  border-orange-200 bg-white p-4 shadow-sm",
         cn({
-          "bg-slate-200 opacity-50": dim,
-          "border-orange-200 transition hover:scale-105 hover:shadow-md":
-            !disableHover && !dim,
+          "border-none bg-slate-200 opacity-75": dim,
+          "transition hover:scale-105 hover:shadow-md": !disableHover && !dim,
           "bg-amber-50": highlight,
         }),
         className
