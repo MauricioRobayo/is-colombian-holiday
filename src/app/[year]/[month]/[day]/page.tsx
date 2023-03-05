@@ -28,10 +28,7 @@ export default function Day({ params }: DayProps) {
 
   return (
     <ColombianHolidays year={year} month={month} day={day}>
-      <Card
-        className="flex flex-col items-center gap-4 p-8 text-xl"
-        disableHover
-      >
+      <Card variant="hero" disableHover>
         <p>{longDateFormatter.format(date)}</p>
         {isHoliday(date) ? (
           <>

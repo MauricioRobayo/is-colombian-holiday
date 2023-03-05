@@ -3,15 +3,18 @@ import { longDateFormatter, timeAgo } from "@/utils/date-helpers";
 import { useMemo } from "react";
 import cn from "clsx";
 import { Celebration } from "../celebration";
-import { Card } from "../card";
+import { Card, CardProps } from "../card";
 
-interface ListItemProps {
+export interface ListItemProps {
   date: Date;
   name: string;
-  dim: boolean;
-  highlight: boolean;
+  variant?: CardProps["variant"];
 }
-export function HolidayListItem({ date, name, dim, highlight }: ListItemProps) {
+export function HolidayListItem({
+  date,
+  name,
+  variant = "default",
+}: ListItemProps) {
   const { relativeTime, path } = useMemo(
     () => ({
       relativeTime: timeAgo.format(date),
@@ -25,12 +28,12 @@ export function HolidayListItem({ date, name, dim, highlight }: ListItemProps) {
     [date]
   );
   return (
-    <Card dim={dim} highlight={highlight} as="li">
+    <Card variant={variant} as="li">
       <Link href={path} className="flex flex-col justify-center gap-2">
         <time
           dateTime={date.toISOString()}
           className={cn("flex flex-col", {
-            "gap-2 font-bold": highlight,
+            "gap-2 font-bold": variant === "highlight",
           })}
         >
           <div className={"text-base text-blue-600 sm:text-xl"}>
@@ -38,16 +41,16 @@ export function HolidayListItem({ date, name, dim, highlight }: ListItemProps) {
           </div>
           <div
             className={cn("sm:text-md flex justify-center gap-2 text-sm", {
-              "flex-col": highlight,
+              "flex-col": variant === "highlight",
             })}
           >
             <div>{name}</div>
-            {highlight ? (
+            {variant === "highlight" ? (
               <Celebration className="h-6 gap-2 text-sm">
                 {relativeTime}
               </Celebration>
             ) : (
-              <div className={cn({ "text-slate-400": !dim })}>
+              <div className={cn({ "text-slate-400": variant !== "dim" })}>
                 {relativeTime}
               </div>
             )}

@@ -3,7 +3,7 @@ import colombianHolidays from "colombian-holidays";
 import Image from "next/image";
 import cryingFace from "svg-emojis/twemoji/1f622.svg";
 import { getMonths } from "../../utils/get-months";
-import { HolidayListItem } from "./holiday-list-item";
+import { HolidayListItem, ListItemProps } from "./holiday-list-item";
 
 const today = new Date();
 
@@ -34,19 +34,44 @@ export function HolidaysList({ year, month }: HolidaysListProps) {
   return (
     <ol className="flex flex-col gap-4">
       {holidaysWithUpcomingHoliday.map((holiday) => {
-        const isCurrentYear =
-          holiday.celebrationDate.getUTCFullYear() === today.getUTCFullYear();
-        const isOver = isCurrentYear && holiday.celebrationDate < today;
+        const variant = getVariant({
+          isCurrentYear:
+            holiday.celebrationDate.getUTCFullYear() === today.getUTCFullYear(),
+          isOver: holiday.celebrationDate < today,
+          month,
+          isUpcoming: holiday.isUpcoming,
+        });
         return (
           <HolidayListItem
-            key={holiday.name.en}
+            key={holiday.date.toISOString()}
             date={holiday.celebrationDate}
             name={holiday.name.en}
-            dim={isCurrentYear && isOver && !month}
-            highlight={holiday.isUpcoming}
+            variant={variant}
           />
         );
       })}
     </ol>
   );
+}
+
+function getVariant({
+  isCurrentYear,
+  isOver,
+  month,
+  isUpcoming,
+}: {
+  isCurrentYear: boolean;
+  isOver: boolean;
+  month: number | undefined;
+  isUpcoming: boolean;
+}): ListItemProps["variant"] {
+  if (isCurrentYear && isOver && month !== undefined) {
+    return "dim";
+  }
+
+  if (isUpcoming) {
+    return "highlight";
+  }
+
+  return "default";
 }
