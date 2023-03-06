@@ -1,11 +1,10 @@
 import { ColombianHolidayWithNativeDate } from "colombian-holidays/lib/types";
-import { HolidayListItem, ListItemProps } from "./holiday-list-item";
+import { HolidayListItem } from "./holiday-list-item";
 
 const today = new Date();
 interface Holiday extends ColombianHolidayWithNativeDate {
   isUpcoming: boolean;
 }
-
 interface HolidaysListProps {
   holidays: ReadonlyArray<Holiday>;
   month?: number;
@@ -44,8 +43,8 @@ function getVariant({
   isOver: boolean;
   month: number | undefined;
   isUpcoming: boolean;
-}): ListItemProps["variant"] {
-  if (isCurrentYear && isOver && month !== undefined) {
+}) {
+  if (isCurrentYear && isOver && month === undefined) {
     return "dim";
   }
 

@@ -25,8 +25,8 @@ export default function Month({ params }: MonthProps) {
   return (
     <>
       <Header>
-        <YearNav selectedMonth={month} selectedYear={year} />
-        <MonthNav selectedMonth={month} selectedYear={month} />
+        <YearNav selectedMonth={month} selectedYear={year} className="my-4" />
+        <MonthNav selectedMonth={month} selectedYear={year} />
       </Header>
       <Main>
         <HolidaysList holidays={holidays} month={month} />

@@ -1,20 +1,23 @@
 import { getMonths } from "@/utils/get-months";
 import Link from "next/link";
 import cn from "clsx";
+import { twMerge } from "tailwind-merge";
 
 interface MonthNavProps {
   selectedYear: number;
   selectedMonth?: number;
   selectedDay?: number;
+  className?: string;
 }
 export function MonthNav({
   selectedYear,
   selectedMonth,
   selectedDay,
+  className,
 }: MonthNavProps) {
   const months = getMonths();
   return (
-    <div className="mt-4 grid grid-cols-3">
+    <div className={twMerge("grid grid-cols-3", className)}>
       {months.map((month, i) =>
         i + 1 !== selectedMonth || selectedDay ? (
           <Link
@@ -23,7 +26,7 @@ export function MonthNav({
               "font-bold": selectedDay && selectedMonth === i + 1,
               "text-white": selectedDay && selectedMonth === i + 1,
             })}
-            href={`${selectedYear}/${String(i + 1)}`}
+            href={`/${selectedYear}/${String(i + 1)}`}
           >
             {month}
           </Link>

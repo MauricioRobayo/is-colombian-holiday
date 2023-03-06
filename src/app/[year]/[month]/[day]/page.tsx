@@ -36,7 +36,7 @@ export default function Day({ params }: DayProps) {
   return (
     <>
       <Header>
-        <YearNav selectedMonth={month} selectedYear={year} />
+        <YearNav selectedMonth={month} selectedYear={year} className="my-4" />
         <MonthNav selectedMonth={month} selectedYear={year} selectedDay={day} />
       </Header>
       <Main>

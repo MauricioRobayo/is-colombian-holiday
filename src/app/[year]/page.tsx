@@ -23,7 +23,7 @@ export default function Year({ params }: YearProps) {
   return (
     <>
       <Header>
-        <YearNav selectedYear={year} />
+        <YearNav selectedYear={year} className="my-4" />
         <MonthNav selectedYear={year} />
       </Header>
       <Main>
