@@ -1,9 +1,11 @@
+import { Header } from "@/components/header";
 import { useHolidays } from "@/hooks/use-holidays";
 import { notFound } from "next/navigation";
-import { ColombianHolidays } from "../../../components/colombian-holidays";
-import { HolidaysList } from "../../../components/holidays-list/holidays-list";
-import { parseDate } from "../../../utils/date-helpers";
-import { getYears } from "../../../utils/get-years";
+import { HolidaysList } from "@/components/holidays-list/holidays-list";
+import { getYears } from "@/utils/get-years";
+import { YearNav } from "@/components/year-nav";
+import { MonthNav } from "@/components/month-nav";
+import { Main } from "@/components/main";
 
 interface MonthProps {
   params: {
@@ -21,9 +23,15 @@ export default function Month({ params }: MonthProps) {
   }
 
   return (
-    <ColombianHolidays year={year} month={month}>
-      <HolidaysList holidays={holidays} month={month} />
-    </ColombianHolidays>
+    <>
+      <Header>
+        <YearNav selectedMonth={month} selectedYear={year} />
+        <MonthNav selectedMonth={month} selectedYear={month} />
+      </Header>
+      <Main>
+        <HolidaysList holidays={holidays} month={month} />
+      </Main>
+    </>
   );
 }
 

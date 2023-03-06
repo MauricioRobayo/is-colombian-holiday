@@ -1,16 +1,13 @@
 import { ReactNode } from "react";
 
 interface HeaderProps {
-  children: ReactNode;
-  subtitle?: ReactNode;
+  children?: ReactNode;
 }
-export function Header({ children, subtitle }: HeaderProps) {
+export function Header({ children }: HeaderProps) {
   return (
     <header className="grid place-items-center border-b-4 border-b-orange-600 bg-violet-600 py-12 px-4 text-center text-white">
-      <div>
-        <h1 className="text-3xl font-bold sm:text-4xl">{children}</h1>
-        {subtitle && <div className="mt-2">{subtitle}</div>}
-      </div>
+      <h1 className="text-3xl font-bold sm:text-4xl">Colombian Holidays</h1>
+      {children && <nav className="mt-2">{children}</nav>}
     </header>
   );
 }
