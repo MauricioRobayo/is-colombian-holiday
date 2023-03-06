@@ -1,3 +1,4 @@
+import { useHolidays } from "@/hooks/use-holidays";
 import { notFound } from "next/navigation";
 import { ColombianHolidays } from "../../../components/colombian-holidays";
 import { HolidaysList } from "../../../components/holidays-list/holidays-list";
@@ -13,14 +14,15 @@ interface MonthProps {
 export default function Month({ params }: MonthProps) {
   const year = Number(params.year);
   const month = Number(params.month);
+  const holidays = useHolidays({ year, month });
 
-  if (Number.isNaN(parseDate(year, month, 1))) {
+  if (!holidays) {
     return notFound();
   }
 
   return (
     <ColombianHolidays year={year} month={month}>
-      <HolidaysList year={Number(year)} month={month} />
+      <HolidaysList holidays={holidays} month={month} />
     </ColombianHolidays>
   );
 }
