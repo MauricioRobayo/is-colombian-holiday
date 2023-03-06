@@ -50,7 +50,7 @@ export default function Day({ params }: DayProps) {
         ) : (
           <SadCard>
             <p>{longDateFormatter.format(date)}</p>
-            <p className="my-4 text-2xl font-bold">Not holiday.</p>
+            <p className="mt-2 text-2xl font-bold">Not holiday.</p>
           </SadCard>
         )}
       </Wrapper>
