@@ -27,7 +27,7 @@ export function Card({
           "border-none bg-slate-200 opacity-75": dim,
           "transition hover:scale-105 hover:shadow-md": !disableHover && !dim,
           "bg-amber-50": highlight,
-          "flex flex-col items-center gap-4 p-8 text-xl ": hero,
+          "flex flex-col items-center p-8 text-xl ": hero,
         }),
         className
       )}
