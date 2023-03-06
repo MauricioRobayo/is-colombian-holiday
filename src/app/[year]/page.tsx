@@ -1,9 +1,11 @@
-import { FIRST_HOLIDAY_YEAR, LAST_HOLIDAY_YEAR } from "colombian-holidays";
+import { Header } from "@/components/header";
+import { HolidaysList } from "@/components/holidays-list/holidays-list";
+import { MonthNav } from "@/components/month-nav";
+import { YearNav } from "@/components/year-nav";
+import { useHolidays } from "@/hooks/use-holidays";
+import { getYears } from "@/utils/get-years";
+import { Main } from "@/components/main";
 import { notFound } from "next/navigation";
-import { ColombianHolidays } from "../../components/colombian-holidays";
-import { HolidaysList } from "../../components/holidays-list/holidays-list";
-import { parseDate } from "../../utils/date-helpers";
-import { getYears } from "../../utils/get-years";
 
 interface YearProps {
   params: {
@@ -12,15 +14,22 @@ interface YearProps {
 }
 export default function Year({ params }: YearProps) {
   const year = Number(params.year);
+  const holidays = useHolidays({ year });
 
-  if (Number.isNaN(parseDate(year, 1, 1))) {
+  if (!holidays) {
     return notFound();
   }
 
   return (
-    <ColombianHolidays year={year}>
-      <HolidaysList year={Number(year)} />
-    </ColombianHolidays>
+    <>
+      <Header>
+        <YearNav selectedYear={year} className="my-4" />
+        <MonthNav selectedYear={year} />
+      </Header>
+      <Main>
+        <HolidaysList holidays={holidays} />
+      </Main>
+    </>
   );
 }
 

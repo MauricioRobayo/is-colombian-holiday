@@ -1,13 +1,19 @@
-import { notFound } from "next/navigation";
-import Image from "next/image";
-import { getDate, longDateFormatter } from "@/utils/date-helpers";
-import { isHoliday } from "colombian-holidays/lib/utils/isHoliday";
-import colombianHolidays from "colombian-holidays";
-import sadFace from "svg-emojis/twemoji/1f641.svg";
-import { ColombianHolidays } from "@/components/colombian-holidays";
-import { Celebration as Celebration } from "@/components/celebration";
-import happyFace from "svg-emojis/twemoji/1f600.svg";
 import { Card } from "@/components/card";
+import { Celebration } from "@/components/celebration";
+import { Header } from "@/components/header";
+import { Main } from "@/components/main";
+import { MonthNav } from "@/components/month-nav";
+import { SadCard } from "@/components/sad-card";
+import { YearNav } from "@/components/year-nav";
+import {
+  getDate as composeDate,
+  longDateFormatter,
+} from "@/utils/date-helpers";
+import colombianHolidays from "colombian-holidays";
+import { isHoliday } from "colombian-holidays/lib/utils/isHoliday";
+import { notFound } from "next/navigation";
+import happyFace from "svg-emojis/twemoji/1f600.svg";
+import Image from "next/image";
 
 interface DayProps {
   params: {
@@ -20,31 +26,35 @@ export default function Day({ params }: DayProps) {
   const year = Number(params.year);
   const month = Number(params.month);
   const day = Number(params.day);
-  const date = getDate(year, month, day);
+  const date = composeDate(year, month, day);
 
   if (Number.isNaN(date.getTime())) {
     return notFound();
   }
 
   return (
-    <ColombianHolidays year={year} month={month} day={day}>
-      <Card variant="hero" disableHover>
-        <p>{longDateFormatter.format(date)}</p>
+    <>
+      <Header>
+        <YearNav selectedMonth={month} selectedYear={year} className="my-4" />
+        <MonthNav selectedMonth={month} selectedYear={year} selectedDay={day} />
+      </Header>
+      <Main>
         {isHoliday(date) ? (
-          <>
+          <Card variant="hero" disableHover>
+            <p>{longDateFormatter.format(date)}</p>
             <Celebration className="h-16 text-2xl font-bold">
               Is holiday!
             </Celebration>
             <Image src={happyFace} alt="smiley face" />
-          </>
+          </Card>
         ) : (
-          <>
-            <p className="text-2xl font-bold">Not holiday.</p>
-            <Image src={sadFace} alt="crying face" />
-          </>
+          <SadCard>
+            <p>{longDateFormatter.format(date)}</p>
+            <p className="my-4 text-2xl font-bold">Not holiday.</p>
+          </SadCard>
         )}
-      </Card>
-    </ColombianHolidays>
+      </Main>
+    </>
   );
 }
 

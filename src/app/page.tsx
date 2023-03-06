@@ -1,34 +1,42 @@
-import { Link } from "../components/link";
-import { Header } from "../components/header";
-import { Main } from "../components/main";
-import { getYears } from "../utils/get-years";
-import { twMerge } from "tailwind-merge";
-import { Card } from "@/components/card";
+import { Header } from "@/components/header";
+import { HolidaysList } from "@/components/holidays-list/holidays-list";
+import { Main } from "@/components/main";
+import { YearNav } from "@/components/year-nav";
+import { addUpcomingHoliday } from "@/hooks/use-holidays";
+import { holidaysWithinInterval } from "colombian-holidays/lib/utils/holidaysWithinInterval";
+import { Link } from "@/components/link";
+import { useMemo } from "react";
+
+const today = new Date();
 
 export default function Home() {
-  const years = getYears();
-  const currentYear = new Date().getUTCFullYear();
+  const holidays = useMemo(() => {
+    const HOLIDAYS_TO_DISPLAY = 4;
+    const startDate = new Date(today);
+    const endDate = new Date(today);
+    startDate.setUTCFullYear(startDate.getUTCFullYear() - 1);
+    endDate.setUTCFullYear(endDate.getUTCFullYear() + 1);
+    const holidays = addUpcomingHoliday(
+      holidaysWithinInterval({
+        start: startDate,
+        end: endDate,
+        valueAsDate: true,
+      })
+    );
+    const startIndex = holidays.findIndex((holiday) => holiday.isUpcoming);
+    const endIndex = startIndex + HOLIDAYS_TO_DISPLAY;
+    return holidays.slice(startIndex, endIndex);
+  }, []);
   return (
     <>
-      <Header>Colombian Holidays</Header>
+      <Header />
       <Main>
-        <Card
-          disableHover
-          variant="hero"
-          className="items-stretch p-4 text-base sm:p-8"
-        >
-          <div className="grid grid-cols-5 gap-2 sm:gap-4">
-            {years.map((year) => (
-              <Link
-                key={year}
-                href={String(year)}
-                className={twMerge(year === currentYear && "text-lg font-bold")}
-              >
-                {year}
-              </Link>
-            ))}
-          </div>
-        </Card>
+        <div className="pb-8">
+          <Link href={`/${today.getUTCFullYear()}`}>
+            Full list of {today.getUTCFullYear()} colombian holidays
+          </Link>
+        </div>
+        <HolidaysList holidays={holidays} />
       </Main>
     </>
   );
