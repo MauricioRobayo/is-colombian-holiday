@@ -25,9 +25,10 @@ export function Card({
         "rounded-lg border-2 border-orange-200 bg-white p-4 shadow-sm",
         cn({
           "border-none bg-slate-200 opacity-75": dim,
-          "transition hover:scale-105 hover:shadow-md": !disableHover && !dim,
+          "transition hover:scale-105 hover:shadow-md":
+            !hero && !disableHover && !dim,
           "bg-amber-50": highlight,
-          "flex flex-col items-center p-8 text-xl ": hero,
+          "flex flex-col items-center gap-4 p-8 text-lg sm:text-xl": hero,
         }),
         className
       )}

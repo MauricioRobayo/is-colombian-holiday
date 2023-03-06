@@ -1,7 +1,7 @@
 import { Card } from "@/components/card";
 import { Celebration } from "@/components/celebration";
 import { Header } from "@/components/header";
-import { Main } from "@/components/main";
+import { Wrapper } from "@/components/wrapper";
 import { MonthNav } from "@/components/month-nav";
 import { SadCard } from "@/components/sad-card";
 import { YearNav } from "@/components/year-nav";
@@ -38,7 +38,7 @@ export default function Day({ params }: DayProps) {
         <YearNav selectedMonth={month} selectedYear={year} className="my-4" />
         <MonthNav selectedMonth={month} selectedYear={year} selectedDay={day} />
       </Header>
-      <Main>
+      <Wrapper>
         {isHoliday(date) ? (
           <Card variant="hero" disableHover>
             <p>{longDateFormatter.format(date)}</p>
@@ -50,10 +50,10 @@ export default function Day({ params }: DayProps) {
         ) : (
           <SadCard>
             <p>{longDateFormatter.format(date)}</p>
-            <p className="my-4 text-2xl font-bold">Not holiday.</p>
+            <p className="mt-2 text-2xl font-bold">Not holiday.</p>
           </SadCard>
         )}
-      </Main>
+      </Wrapper>
     </>
   );
 }
