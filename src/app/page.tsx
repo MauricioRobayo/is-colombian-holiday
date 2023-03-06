@@ -20,7 +20,6 @@ export default function Home() {
         valueAsDate: true,
       })
     );
-    console.log(holidays);
     const startIndex = holidays.findIndex((holiday) => holiday.isUpcoming);
     const endIndex = startIndex + HOLIDAYS_TO_DISPLAY;
     return holidays.slice(startIndex, endIndex);
