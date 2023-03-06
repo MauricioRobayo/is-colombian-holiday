@@ -1,4 +1,4 @@
-const monthFormatter = new Intl.DateTimeFormat(undefined, {
+export const monthFormatter = new Intl.DateTimeFormat(undefined, {
   month: "long",
 });
 export function getMonths() {

@@ -9,11 +9,6 @@ export const longDateFormatter = new Intl.DateTimeFormat("en-US", {
   year: "numeric",
 });
 
-export const relativeTimeFormatter = new Intl.RelativeTimeFormat("en-US", {
-  numeric: "auto",
-  style: "long",
-});
-
 TimeAgo.addDefaultLocale(en);
 export const timeAgo = new TimeAgo("en-US");
 
