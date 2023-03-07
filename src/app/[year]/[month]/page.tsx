@@ -1,12 +1,14 @@
+import { Calendar } from "@/components/calendar";
 import { Header } from "@/components/header";
 import { HolidaysList } from "@/components/holidays-list/holidays-list";
 import { Link } from "@/components/link";
-import { MonthNav } from "@/components/month-nav";
+import { MonthList } from "@/components/month-list";
 import { SadCard } from "@/components/sad-card";
 import { Wrapper } from "@/components/wrapper";
 import { YearNav } from "@/components/year-nav";
+import { YearsList } from "@/components/years-list";
 import { useHolidays } from "@/hooks/use-holidays";
-import { getMonths } from "@/utils/get-months";
+import { getMonths, monthFormatter } from "@/utils/get-months";
 import { getYears } from "@/utils/get-years";
 import { notFound } from "next/navigation";
 import { useMemo } from "react";
@@ -28,12 +30,12 @@ export default function Month({ params }: MonthProps) {
     return {
       prev: {
         month: prevMonth.getUTCMonth() + 1,
-        name: monthNames[prevMonth.getUTCMonth()],
+        name: monthFormatter.format(prevMonth),
         year: prevMonth.getUTCFullYear(),
       },
       next: {
         month: nextMonth.getUTCMonth() + 1,
-        name: monthNames[nextMonth.getUTCMonth()],
+        name: monthFormatter.format(nextMonth),
         year: nextMonth.getUTCFullYear(),
       },
     };
@@ -47,10 +49,19 @@ export default function Month({ params }: MonthProps) {
     <>
       <Header>
         <YearNav selectedMonth={month} selectedYear={year} className="my-4" />
-        <MonthNav selectedMonth={month} selectedYear={year} />
+        <MonthList selectedMonth={month} selectedYear={year} />
       </Header>
-      <Wrapper className="flex flex-col gap-4">
-        <h2 className="text-2xl">{monthNames[month - 1]} Holidays</h2>
+      <Wrapper as="main" className="flex flex-col gap-4">
+        <h2 className="text-2xl">
+          <Link href={`/${prev.year}/${prev.month}`} className="mr-2">
+            &larr;
+          </Link>
+          {monthNames[month - 1]} {year} Holidays
+          <Link href={`/${next.year}/${next.month}`} className="ml-2">
+            &rarr;
+          </Link>
+        </h2>
+        <Calendar month={month} year={year} />
         {holidays.length === 0 ? (
           <SadCard>
             <p>
@@ -72,6 +83,9 @@ export default function Month({ params }: MonthProps) {
             </Link>
           </div>
         </div>
+      </Wrapper>
+      <Wrapper as="aside">
+        <YearsList />
       </Wrapper>
     </>
   );

@@ -13,7 +13,6 @@ export function YearsList({ years = 25, selectedYear }: YearsListProp) {
       {getYears(years).map((year) => {
         const isCurrentYear = today.getUTCFullYear() === year;
         const isSelectedYear = year === selectedYear;
-        console.log(isCurrentYear);
         return (
           <div key={year}>
             {isSelectedYear ? (

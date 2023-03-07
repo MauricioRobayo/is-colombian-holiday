@@ -1,6 +1,6 @@
 import { Header } from "@/components/header";
 import { HolidaysList } from "@/components/holidays-list/holidays-list";
-import { MonthNav } from "@/components/month-nav";
+import { MonthList } from "@/components/month-list";
 import { YearNav } from "@/components/year-nav";
 import { useHolidays } from "@/hooks/use-holidays";
 import { getYears } from "@/utils/get-years";
@@ -25,7 +25,7 @@ export default function Year({ params }: YearProps) {
     <>
       <Header>
         <YearNav selectedYear={year} className="my-4" />
-        <MonthNav selectedYear={year} />
+        <MonthList selectedYear={year} />
       </Header>
       <Wrapper as="main">
         <HolidaysList holidays={holidays} />
