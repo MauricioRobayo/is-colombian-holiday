@@ -43,7 +43,7 @@ export default function Month({ params }: MonthProps) {
       <Wrapper as="main" className="my-8">
         <Nav
           prev={{ name: "", path: prev.path }}
-          next={{ name: "", path: next.name }}
+          next={{ name: "", path: next.path }}
           className="mb-8 items-center justify-center gap-4 text-xl font-bold"
         >
           <H1 className="mb-0">

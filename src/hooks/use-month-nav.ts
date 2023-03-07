@@ -12,11 +12,11 @@ export function useMonthNav({ year, month }: Options) {
     return {
       prev: {
         name: `${monthFormatter.format(prevMonth)}, ${year}`,
-        path: `/${year}/${prevMonth.getUTCMonth() + 1}`,
+        path: `/${prevMonth.getUTCFullYear()}/${prevMonth.getUTCMonth() + 1}`,
       },
       next: {
         name: `${monthFormatter.format(nextMonth)}, ${year}`,
-        path: `/${year}/${nextMonth.getUTCMonth() + 1}`,
+        path: `/${nextMonth.getUTCFullYear()}/${nextMonth.getUTCMonth() + 1}`,
       },
     };
   }, [year, month]);
