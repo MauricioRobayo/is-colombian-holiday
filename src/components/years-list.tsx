@@ -1,15 +1,21 @@
 import cn from "clsx";
 import { getYears } from "@/utils/get-years";
-import { Link } from "@/components/link";
+import Link from "next/link";
+import { twMerge } from "tailwind-merge";
 
 interface YearsListProp {
   years?: number;
   selectedYear?: number;
+  className?: string;
 }
-export function YearsList({ years = 25, selectedYear }: YearsListProp) {
+export function YearsList({
+  years = 25,
+  selectedYear,
+  className,
+}: YearsListProp) {
   const today = new Date();
   return (
-    <div className="grid grid-cols-5 gap-x-4 gap-y-2">
+    <div className={twMerge("grid grid-cols-5 gap-x-4 gap-y-2", className)}>
       {getYears(years).map((year) => {
         const isCurrentYear = today.getUTCFullYear() === year;
         const isSelectedYear = year === selectedYear;
@@ -17,7 +23,7 @@ export function YearsList({ years = 25, selectedYear }: YearsListProp) {
           <div key={year}>
             {isSelectedYear ? (
               <div
-                className={cn(
+                className={twMerge(
                   "text-slate-400",
                   isCurrentYear && "text-lg font-bold"
                 )}

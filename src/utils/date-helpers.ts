@@ -24,3 +24,9 @@ export function parseDate(year: number, month: number, day: number) {
   const paddedDay = String(day).padStart(2, "0");
   return Date.parse(`${year}-${paddedMonth}-${paddedDay}T00:00:00.000Z`);
 }
+
+export function formatDateAsPath(date: Date) {
+  return `/${date.getUTCFullYear()}/${
+    date.getUTCMonth() + 1
+  }/${date.getUTCDate()}`;
+}
