@@ -1,4 +1,6 @@
 import { Calendar } from "@/components/calendar";
+import { Footer } from "@/components/footer";
+import { H1 } from "@/components/h1";
 import { Header } from "@/components/header";
 import { HolidaysList } from "@/components/holidays-list/holidays-list";
 import { Link } from "@/components/link";
@@ -51,8 +53,8 @@ export default function Month({ params }: MonthProps) {
         <YearNav selectedMonth={month} selectedYear={year} className="my-4" />
         <MonthList selectedMonth={month} selectedYear={year} />
       </Header>
-      <Wrapper as="main" className="flex flex-col gap-4">
-        <h2 className="text-2xl">
+      <Wrapper as="main" className="my-8">
+        <H1>
           <Link href={`/${prev.year}/${prev.month}`} className="mr-2">
             &larr;
           </Link>
@@ -60,8 +62,8 @@ export default function Month({ params }: MonthProps) {
           <Link href={`/${next.year}/${next.month}`} className="ml-2">
             &rarr;
           </Link>
-        </h2>
-        <Calendar month={month} year={year} />
+        </H1>
+        <Calendar month={month} year={year} className="mb-4" />
         {holidays.length === 0 ? (
           <SadCard>
             <p>
@@ -71,7 +73,7 @@ export default function Month({ params }: MonthProps) {
         ) : (
           <HolidaysList holidays={holidays} month={month} />
         )}
-        <div className="flex justify-between text-sm">
+        <div className="mt-4 flex justify-between text-sm">
           <div>
             <Link href={`/${prev.year}/${prev.month}`}>
               &larr; {`${prev.name}, ${prev.year}`}
@@ -83,9 +85,6 @@ export default function Month({ params }: MonthProps) {
             </Link>
           </div>
         </div>
-      </Wrapper>
-      <Wrapper as="aside">
-        <YearsList />
       </Wrapper>
     </>
   );

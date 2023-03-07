@@ -1,12 +1,12 @@
+import { H1 } from "@/components/h1";
 import { Header } from "@/components/header";
 import { HolidaysList } from "@/components/holidays-list/holidays-list";
 import { MonthList } from "@/components/month-list";
+import { Wrapper } from "@/components/wrapper";
 import { YearNav } from "@/components/year-nav";
 import { useHolidays } from "@/hooks/use-holidays";
 import { getYears } from "@/utils/get-years";
-import { Wrapper } from "@/components/wrapper";
 import { notFound } from "next/navigation";
-import { YearsList } from "@/components/years-list";
 
 interface YearProps {
   params: {
@@ -27,11 +27,9 @@ export default function Year({ params }: YearProps) {
         <YearNav selectedYear={year} className="my-4" />
         <MonthList selectedYear={year} />
       </Header>
-      <Wrapper as="main">
+      <Wrapper as="main" className="my-8">
+        <H1>{year} Colombian Holidays</H1>
         <HolidaysList holidays={holidays} />
-      </Wrapper>
-      <Wrapper as="aside">
-        <YearsList selectedYear={year} />
       </Wrapper>
     </>
   );

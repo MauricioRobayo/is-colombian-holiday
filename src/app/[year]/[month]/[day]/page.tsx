@@ -15,6 +15,7 @@ import { notFound } from "next/navigation";
 import happyFace from "svg-emojis/twemoji/1f600.svg";
 import Image from "next/image";
 import { Calendar } from "@/components/calendar";
+import { H1 } from "@/components/h1";
 
 interface DayProps {
   params: {
@@ -43,7 +44,8 @@ export default function Day({ params }: DayProps) {
           selectedDay={day}
         />
       </Header>
-      <Wrapper as="main">
+      <Wrapper as="main" className="mt-8">
+        <H1>Is Colombian Holiday?</H1>
         {isHoliday(date) ? (
           <Card variant="hero" disableHover>
             <p>{longDateFormatter.format(date)}</p>
@@ -59,7 +61,7 @@ export default function Day({ params }: DayProps) {
           </SadCard>
         )}
       </Wrapper>
-      <Wrapper as="aside">
+      <Wrapper as="aside" className="mb-8">
         <Calendar year={year} month={month} />
       </Wrapper>
     </>

@@ -25,10 +25,10 @@ export function YearNav({
       </Link>
       {selectedMonth ? (
         <Link href={`/${String(selectedYear)}`}>
-          <h2>{selectedYear}</h2>
+          <div>{selectedYear}</div>
         </Link>
       ) : (
-        <h2>{selectedYear}</h2>
+        <div>{selectedYear}</div>
       )}
       <Link className="text-lg text-violet-400" href={String(nextYear)}>
         {nextYear} &rarr;

@@ -31,12 +31,12 @@ export default function Home() {
   return (
     <>
       <Header>
-        <YearsList />
+        <YearsList className="mt-8" />
       </Header>
-      <Wrapper as="main">
-        <h2 className="text-lg font-bold uppercase sm:text-xl">
+      <Wrapper as="main" className="my-8">
+        <h1 className="text-lg font-bold uppercase sm:text-xl">
           Upcoming holidays in Colombia
-        </h2>
+        </h1>
         <HolidaysList holidays={holidays} className="my-8" />
         <div>
           <Link href={`/${today.getUTCFullYear()}`}>
