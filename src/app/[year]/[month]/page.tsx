@@ -5,11 +5,13 @@ import { Header } from "@/components/header";
 import { HolidaysList } from "@/components/holidays-list/holidays-list";
 import { Link } from "@/components/link";
 import { MonthList } from "@/components/month-list";
+import { Nav } from "@/components/nav";
 import { SadCard } from "@/components/sad-card";
 import { Wrapper } from "@/components/wrapper";
 import { YearNav } from "@/components/year-nav";
 import { YearsList } from "@/components/years-list";
 import { useHolidays } from "@/hooks/use-holidays";
+import { useMonthNav } from "@/hooks/use-month-nav";
 import { getMonths, monthFormatter } from "@/utils/get-months";
 import { getYears } from "@/utils/get-years";
 import { notFound } from "next/navigation";
@@ -26,22 +28,7 @@ export default function Month({ params }: MonthProps) {
   const year = Number(params.year);
   const month = Number(params.month);
   const holidays = useHolidays({ year, month });
-  const { prev, next } = useMemo(() => {
-    const prevMonth = new Date(Date.UTC(year, month - 2, 1));
-    const nextMonth = new Date(Date.UTC(year, month, 1));
-    return {
-      prev: {
-        month: prevMonth.getUTCMonth() + 1,
-        name: monthFormatter.format(prevMonth),
-        year: prevMonth.getUTCFullYear(),
-      },
-      next: {
-        month: nextMonth.getUTCMonth() + 1,
-        name: monthFormatter.format(nextMonth),
-        year: nextMonth.getUTCFullYear(),
-      },
-    };
-  }, [year, month]);
+  const { prev, next } = useMonthNav({ year, month });
 
   if (!holidays) {
     return notFound();
@@ -73,18 +60,7 @@ export default function Month({ params }: MonthProps) {
         ) : (
           <HolidaysList holidays={holidays} month={month} />
         )}
-        <div className="mt-4 flex justify-between text-sm">
-          <div>
-            <Link href={`/${prev.year}/${prev.month}`}>
-              &larr; {`${prev.name}, ${prev.year}`}
-            </Link>
-          </div>
-          <div>
-            <Link href={`/${next.year}/${next.month}`}>
-              {`${next.name}, ${next.year}`} &rarr;
-            </Link>
-          </div>
-        </div>
+        <Nav prev={prev} next={next} className="mt-4" />
       </Wrapper>
     </>
   );

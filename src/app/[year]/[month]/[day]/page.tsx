@@ -1,21 +1,23 @@
+import { Calendar } from "@/components/calendar";
 import { Card } from "@/components/card";
 import { Celebration } from "@/components/celebration";
+import { H1 } from "@/components/h1";
 import { Header } from "@/components/header";
-import { Wrapper } from "@/components/wrapper";
 import { MonthList } from "@/components/month-list";
+import { Nav } from "@/components/nav";
 import { SadCard } from "@/components/sad-card";
+import { Wrapper } from "@/components/wrapper";
 import { YearNav } from "@/components/year-nav";
+import { useMonthNav } from "@/hooks/use-month-nav";
 import {
   getDate as composeDate,
   longDateFormatter,
 } from "@/utils/date-helpers";
 import colombianHolidays from "colombian-holidays";
 import { isHoliday } from "colombian-holidays/lib/utils/isHoliday";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import happyFace from "svg-emojis/twemoji/1f600.svg";
-import Image from "next/image";
-import { Calendar } from "@/components/calendar";
-import { H1 } from "@/components/h1";
 
 interface DayProps {
   params: {
@@ -29,6 +31,7 @@ export default function Day({ params }: DayProps) {
   const month = Number(params.month);
   const day = Number(params.day);
   const date = composeDate(year, month, day);
+  const { prev, next } = useMonthNav({ year, month });
 
   if (Number.isNaN(date.getTime())) {
     return notFound();
@@ -44,8 +47,9 @@ export default function Day({ params }: DayProps) {
           selectedDay={day}
         />
       </Header>
-      <Wrapper as="main" className="mt-8">
+      <Wrapper as="main" className="my-8">
         <H1>Is Colombian Holiday?</H1>
+        <Calendar year={year} month={month} day={day} className="mb-4" />
         {isHoliday(date) ? (
           <Card variant="hero" disableHover>
             <p>{longDateFormatter.format(date)}</p>
@@ -60,9 +64,7 @@ export default function Day({ params }: DayProps) {
             <p className="mt-2 text-2xl font-bold">Not holiday.</p>
           </SadCard>
         )}
-      </Wrapper>
-      <Wrapper as="aside" className="mb-8">
-        <Calendar year={year} month={month} day={day} />
+        <Nav prev={prev} next={next} className="mt-4" />
       </Wrapper>
     </>
   );
