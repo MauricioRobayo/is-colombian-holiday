@@ -30,7 +30,9 @@ export default function Home() {
   }, []);
   return (
     <>
-      <Header />
+      <Header>
+        <YearsList className="mt-8" />
+      </Header>
       <Wrapper as="main">
         <div className="pb-8">
           <Link href={`/${today.getUTCFullYear()}`}>
@@ -38,9 +40,6 @@ export default function Home() {
           </Link>
         </div>
         <HolidaysList holidays={holidays} />
-      </Wrapper>
-      <Wrapper as="aside">
-        <YearsList />
       </Wrapper>
     </>
   );
