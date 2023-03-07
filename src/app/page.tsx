@@ -31,15 +31,18 @@ export default function Home() {
   return (
     <>
       <Header>
-        <YearsList className="mt-8" />
+        <YearsList />
       </Header>
       <Wrapper as="main">
-        <div className="pb-8">
+        <h2 className="text-lg font-bold uppercase sm:text-xl">
+          Upcoming holidays in Colombia
+        </h2>
+        <HolidaysList holidays={holidays} className="my-8" />
+        <div>
           <Link href={`/${today.getUTCFullYear()}`}>
             Full list of {today.getUTCFullYear()} colombian holidays
           </Link>
         </div>
-        <HolidaysList holidays={holidays} />
       </Wrapper>
     </>
   );

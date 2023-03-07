@@ -1,4 +1,5 @@
 import { ColombianHolidayWithNativeDate } from "colombian-holidays/lib/types";
+import { twMerge } from "tailwind-merge";
 import { HolidayListItem } from "./holiday-list-item";
 
 const today = new Date();
@@ -8,10 +9,15 @@ interface Holiday extends ColombianHolidayWithNativeDate {
 interface HolidaysListProps {
   holidays: ReadonlyArray<Holiday>;
   month?: number;
+  className?: string;
 }
-export function HolidaysList({ holidays, month }: HolidaysListProps) {
+export function HolidaysList({
+  className,
+  holidays,
+  month,
+}: HolidaysListProps) {
   return (
-    <ol className="flex flex-col gap-4">
+    <ol className={twMerge("flex flex-col gap-4", className)}>
       {holidays.map((holiday) => {
         const variant = getVariant({
           isCurrentYear:
