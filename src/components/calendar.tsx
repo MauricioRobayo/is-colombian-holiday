@@ -33,7 +33,7 @@ export function Calendar({ year, month, className, day }: CalendarProps) {
             className={cn("rounded-full p-1", {
               [`col-start-${date.getUTCDay() + 1}`]: index === 0,
               "bg-violet-600 text-white": isHoliday(date),
-              "text-slate-400 outline outline-red-400": isSelectedDate,
+              "text-slate-400 outline outline-orange-600": isSelectedDate,
             })}
           >
             {isSelectedDate ? (

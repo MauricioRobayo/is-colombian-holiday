@@ -8,8 +8,8 @@ import { Nav } from "@/components/nav";
 import { SadCard } from "@/components/sad-card";
 import { Wrapper } from "@/components/wrapper";
 import { YearNav } from "@/components/year-nav";
-import { useMonthNav } from "@/hooks/use-month-nav";
 import {
+  formatDateAsPath,
   getDate as composeDate,
   longDateFormatter,
 } from "@/utils/date-helpers";
@@ -17,6 +17,7 @@ import colombianHolidays from "colombian-holidays";
 import { isHoliday } from "colombian-holidays/lib/utils/isHoliday";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import { useMemo } from "react";
 import happyFace from "svg-emojis/twemoji/1f600.svg";
 
 interface DayProps {
@@ -31,7 +32,21 @@ export default function Day({ params }: DayProps) {
   const month = Number(params.month);
   const day = Number(params.day);
   const date = composeDate(year, month, day);
-  const { prev, next } = useMonthNav({ year, month });
+  const { prev, next } = useMemo(() => {
+    const prevDay = new Date(Date.UTC(year, month - 1, day - 1));
+    const nextDay = new Date(Date.UTC(year, month - 1, day + 1));
+    console.log("*".repeat(50), year, month, day, prevDay);
+    return {
+      prev: {
+        name: longDateFormatter.format(prevDay).replace(/.*?,\s/, ""),
+        path: formatDateAsPath(prevDay),
+      },
+      next: {
+        name: longDateFormatter.format(nextDay).replace(/.*?,\s/, ""),
+        path: formatDateAsPath(nextDay),
+      },
+    };
+  }, [year, month, day]);
 
   if (Number.isNaN(date.getTime())) {
     return notFound();

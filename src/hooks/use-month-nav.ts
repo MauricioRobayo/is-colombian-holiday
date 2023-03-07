@@ -11,15 +11,11 @@ export function useMonthNav({ year, month }: Options) {
     const nextMonth = new Date(Date.UTC(year, month, 1));
     return {
       prev: {
-        month: prevMonth.getUTCMonth() + 1,
         name: `${monthFormatter.format(prevMonth)}, ${year}`,
-        year: prevMonth.getUTCFullYear(),
         path: `/${year}/${prevMonth.getUTCMonth() + 1}`,
       },
       next: {
-        month: nextMonth.getUTCMonth() + 1,
         name: `${monthFormatter.format(nextMonth)}, ${year}`,
-        year: nextMonth.getUTCFullYear(),
         path: `/${year}/${nextMonth.getUTCMonth() + 1}`,
       },
     };

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { twMerge } from "tailwind-merge";
+import { Nav } from "./nav";
 
 interface YearNavProps {
   selectedYear?: number;
@@ -11,28 +12,32 @@ export function YearNav({
   selectedMonth,
   className,
 }: YearNavProps) {
-  const previousYear = selectedYear - 1;
-  const nextYear = selectedYear + 1;
+  const prevYear = {
+    name: String(selectedYear - 1),
+    path: `${selectedYear - 1}`,
+  };
+  const nextYear = {
+    name: String(selectedYear + 1),
+    path: `${selectedYear + 1}`,
+  };
   return (
-    <div
+    <Nav
+      prev={prevYear}
+      next={nextYear}
       className={twMerge(
-        "flex items-center justify-around gap-8 text-3xl font-bold sm:text-4xl",
+        "items-center justify-around gap-8 text-lg font-bold text-violet-400",
         className
       )}
     >
-      <Link className="text-lg text-violet-400" href={String(previousYear)}>
-        &larr; {previousYear}
-      </Link>
-      {selectedMonth ? (
-        <Link href={`/${String(selectedYear)}`}>
-          <div>{selectedYear}</div>
-        </Link>
-      ) : (
-        <div>{selectedYear}</div>
-      )}
-      <Link className="text-lg text-violet-400" href={String(nextYear)}>
-        {nextYear} &rarr;
-      </Link>
-    </div>
+      <div className="text-4xl text-white">
+        {selectedMonth ? (
+          <Link href={`/${String(selectedYear)}`}>
+            <div>{selectedYear}</div>
+          </Link>
+        ) : (
+          selectedYear
+        )}
+      </div>
+    </Nav>
   );
 }

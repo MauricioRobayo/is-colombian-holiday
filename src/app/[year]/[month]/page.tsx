@@ -41,15 +41,15 @@ export default function Month({ params }: MonthProps) {
         <MonthList selectedMonth={month} selectedYear={year} />
       </Header>
       <Wrapper as="main" className="my-8">
-        <H1>
-          <Link href={`/${prev.year}/${prev.month}`} className="mr-2">
-            &larr;
-          </Link>
-          {monthNames[month - 1]} {year} Holidays
-          <Link href={`/${next.year}/${next.month}`} className="ml-2">
-            &rarr;
-          </Link>
-        </H1>
+        <Nav
+          prev={{ name: "", path: prev.path }}
+          next={{ name: "", path: next.name }}
+          className="mb-8 items-center justify-center gap-4 text-xl font-bold"
+        >
+          <H1 className="mb-0">
+            {monthNames[month - 1]} {year}
+          </H1>
+        </Nav>
         <Calendar month={month} year={year} className="mb-4" />
         {holidays.length === 0 ? (
           <SadCard>
