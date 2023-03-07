@@ -2,7 +2,7 @@ import { Card } from "@/components/card";
 import { Celebration } from "@/components/celebration";
 import { Header } from "@/components/header";
 import { Wrapper } from "@/components/wrapper";
-import { MonthNav } from "@/components/month-nav";
+import { MonthList } from "@/components/month-list";
 import { SadCard } from "@/components/sad-card";
 import { YearNav } from "@/components/year-nav";
 import {
@@ -14,6 +14,7 @@ import { isHoliday } from "colombian-holidays/lib/utils/isHoliday";
 import { notFound } from "next/navigation";
 import happyFace from "svg-emojis/twemoji/1f600.svg";
 import Image from "next/image";
+import { Calendar } from "@/components/calendar";
 
 interface DayProps {
   params: {
@@ -36,9 +37,13 @@ export default function Day({ params }: DayProps) {
     <>
       <Header>
         <YearNav selectedMonth={month} selectedYear={year} className="my-4" />
-        <MonthNav selectedMonth={month} selectedYear={year} selectedDay={day} />
+        <MonthList
+          selectedMonth={month}
+          selectedYear={year}
+          selectedDay={day}
+        />
       </Header>
-      <Wrapper>
+      <Wrapper as="main">
         {isHoliday(date) ? (
           <Card variant="hero" disableHover>
             <p>{longDateFormatter.format(date)}</p>
@@ -53,6 +58,9 @@ export default function Day({ params }: DayProps) {
             <p className="mt-2 text-2xl font-bold">Not holiday.</p>
           </SadCard>
         )}
+      </Wrapper>
+      <Wrapper as="aside">
+        <Calendar year={year} month={month} />
       </Wrapper>
     </>
   );
