@@ -7,9 +7,10 @@ import { twMerge } from "tailwind-merge";
 interface CalendarProps {
   year: number;
   month: number;
+  day?: number;
   className?: string;
 }
-export function Calendar({ year, month, className }: CalendarProps) {
+export function Calendar({ year, month, className, day }: CalendarProps) {
   const dates = getMonthDates({ year, month });
   const days = ["S", "M", "T", "W", "T", "F", "S"];
   return (
@@ -25,17 +26,27 @@ export function Calendar({ year, month, className }: CalendarProps) {
         </div>
       ))}
       {dates.map((date, index) => {
+        const isSelectedDate = date.getUTCDate() === day;
         return (
-          <Link
+          <div
             key={date.toISOString()}
-            href={`/${year}/${date.getUTCMonth() + 1}/${date.getUTCDate()}`}
             className={cn("rounded-full p-1", {
               [`col-start-${date.getUTCDay()}`]: index === 0,
               "bg-violet-600 text-white": isHoliday(date),
+              "text-slate-400 outline outline-red-400": isSelectedDate,
             })}
           >
-            <time dateTime={date.toISOString()}>{date.getUTCDate()}</time>
-          </Link>
+            {isSelectedDate ? (
+              <time dateTime={date.toISOString()}>{date.getUTCDate()}</time>
+            ) : (
+              <Link
+                key={date.toISOString()}
+                href={`/${year}/${date.getUTCMonth() + 1}/${date.getUTCDate()}`}
+              >
+                <time dateTime={date.toISOString()}>{date.getUTCDate()}</time>
+              </Link>
+            )}
+          </div>
         );
       })}
     </div>

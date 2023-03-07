@@ -62,7 +62,7 @@ export default function Day({ params }: DayProps) {
         )}
       </Wrapper>
       <Wrapper as="aside" className="mb-8">
-        <Calendar year={year} month={month} />
+        <Calendar year={year} month={month} day={day} />
       </Wrapper>
     </>
   );
