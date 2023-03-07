@@ -35,7 +35,6 @@ export default function Day({ params }: DayProps) {
   const { prev, next } = useMemo(() => {
     const prevDay = new Date(Date.UTC(year, month - 1, day - 1));
     const nextDay = new Date(Date.UTC(year, month - 1, day + 1));
-    console.log("*".repeat(50), year, month, day, prevDay);
     return {
       prev: {
         name: longDateFormatter.format(prevDay).replace(/.*?,\s/, ""),
