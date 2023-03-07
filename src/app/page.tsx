@@ -7,6 +7,7 @@ import { holidaysWithinInterval } from "colombian-holidays/lib/utils/holidaysWit
 import { Link } from "@/components/link";
 import { useMemo } from "react";
 import { YearsList } from "@/components/years-list";
+import { H1 } from "@/components/h1";
 
 const today = new Date();
 
@@ -34,9 +35,7 @@ export default function Home() {
         <YearsList className="mt-8" />
       </Header>
       <Wrapper as="main" className="my-8">
-        <h1 className="text-lg font-bold uppercase sm:text-xl">
-          Upcoming holidays in Colombia
-        </h1>
+        <H1>Upcoming holidays in Colombia</H1>
         <HolidaysList holidays={holidays} className="my-8" />
         <div>
           <Link href={`/${today.getUTCFullYear()}`}>
