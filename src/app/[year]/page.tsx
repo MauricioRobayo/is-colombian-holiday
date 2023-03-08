@@ -30,7 +30,7 @@ export default function Year({ params }: YearProps) {
       </Header>
       <Breadcrumbs breadcrumbs={[{ name: String(year) }]} />
       <Wrapper as="main" className="my-8">
-        <H1>{year} Colombian Holidays</H1>
+        <H1>Holidays in Colombia {year}</H1>
         <HolidaysList holidays={holidays} />
       </Wrapper>
     </>
