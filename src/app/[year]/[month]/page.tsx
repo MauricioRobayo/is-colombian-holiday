@@ -1,4 +1,4 @@
-import Breadcrumbs from "@/components/breadcrumbs";
+import { Breadcrumbs } from "@/components/breadcrumbs";
 import { Calendar } from "@/components/calendar";
 import { H1 } from "@/components/h1";
 import { Header } from "@/components/header";

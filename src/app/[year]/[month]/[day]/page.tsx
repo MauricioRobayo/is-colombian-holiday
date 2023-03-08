@@ -1,4 +1,4 @@
-import Breadcrumbs from "@/components/breadcrumbs";
+import { Breadcrumbs } from "@/components/breadcrumbs";
 import { Calendar } from "@/components/calendar";
 import { Card } from "@/components/card";
 import { Celebration } from "@/components/celebration";
@@ -15,7 +15,6 @@ import {
   getDate as composeDate,
   longDateFormatter,
 } from "@/utils/date-helpers";
-import { monthFormatter } from "@/utils/get-months";
 import colombianHolidays from "colombian-holidays";
 import { isHoliday } from "colombian-holidays/lib/utils/isHoliday";
 import Image from "next/image";
@@ -87,9 +86,7 @@ export default function Day({ params }: DayProps) {
             <p className="mt-2 text-2xl font-bold">Not holiday.</p>
           </SadCard>
         )}
-        <Nav prev={prev} next={next} className="mt-4 mb-8 text-sm" />
-        <MonthNav year={year} month={month} className="mb-2 text-lg" />
-        <Calendar year={year} month={month} day={day} />
+        <Nav prev={prev} next={next} className="mt-8 text-sm" />
       </Wrapper>
     </>
   );

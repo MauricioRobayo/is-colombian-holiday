@@ -13,7 +13,7 @@ interface BreadcrumbsProps {
   className?: string;
   breadcrumbs: PathSegment[];
 }
-function Breadcrumbs({ breadcrumbs, className = "" }: BreadcrumbsProps) {
+export function Breadcrumbs({ breadcrumbs, className = "" }: BreadcrumbsProps) {
   breadcrumbs.unshift({
     name: "Home",
     path: "/",
@@ -67,10 +67,4 @@ function Breadcrumbs({ breadcrumbs, className = "" }: BreadcrumbsProps) {
       </Wrapper>
     </div>
   );
-}
-
-export default Breadcrumbs;
-
-function isPathSegment(item: PathSegment | SelectSegment): item is PathSegment {
-  return "path" in item;
 }
