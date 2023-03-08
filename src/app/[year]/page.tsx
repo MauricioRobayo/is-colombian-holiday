@@ -1,3 +1,4 @@
+import { Breadcrumbs } from "@/components/breadcrumbs";
 import { H1 } from "@/components/h1";
 import { Header } from "@/components/header";
 import { HolidaysList } from "@/components/holidays-list/holidays-list";
@@ -27,8 +28,9 @@ export default function Year({ params }: YearProps) {
         <YearNav selectedYear={year} className="my-4" />
         <MonthList selectedYear={year} />
       </Header>
+      <Breadcrumbs breadcrumbs={[{ name: String(year) }]} />
       <Wrapper as="main" className="my-8">
-        <H1>{year} Colombian Holidays</H1>
+        <H1>Holidays in Colombia {year}</H1>
         <HolidaysList holidays={holidays} />
       </Wrapper>
     </>
