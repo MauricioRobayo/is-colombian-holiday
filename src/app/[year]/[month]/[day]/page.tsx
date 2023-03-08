@@ -1,3 +1,4 @@
+import Breadcrumbs from "@/components/breadcrumbs";
 import { Calendar } from "@/components/calendar";
 import { Card } from "@/components/card";
 import { Celebration } from "@/components/celebration";
@@ -63,6 +64,13 @@ export default function Day({ params }: DayProps) {
           selectedDay={day}
         />
       </Header>
+      <Breadcrumbs
+        breadcrumbs={[
+          { name: String(year), path: String(year) },
+          { name: String(month), path: `/${year}/${month}` },
+          { name: String(day) },
+        ]}
+      />
       <Wrapper as="main" className="my-8">
         <H1>Is Colombian Holiday?</H1>
         {isHoliday(date) ? (

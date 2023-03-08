@@ -1,3 +1,4 @@
+import Breadcrumbs from "@/components/breadcrumbs";
 import { Calendar } from "@/components/calendar";
 import { H1 } from "@/components/h1";
 import { Header } from "@/components/header";
@@ -37,6 +38,12 @@ export default function Month({ params }: MonthProps) {
         <YearNav selectedMonth={month} selectedYear={year} className="my-4" />
         <MonthList selectedMonth={month} selectedYear={year} />
       </Header>
+      <Breadcrumbs
+        breadcrumbs={[
+          { name: String(year), path: String(year) },
+          { name: String(month) },
+        ]}
+      />
       <Wrapper as="main" className="my-8">
         <MonthNav
           year={year}
