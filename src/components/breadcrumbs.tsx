@@ -2,7 +2,7 @@ import { Link } from "@/components/link";
 import { ReactNode } from "react";
 import { twMerge } from "tailwind-merge";
 import { Wrapper } from "./wrapper";
-import { AiOutlineHome } from "react-icons/ai";
+import { TbHome } from "react-icons/tb";
 
 interface PathSegment {
   name: string;
@@ -17,7 +17,7 @@ export function Breadcrumbs({ breadcrumbs, className = "" }: BreadcrumbsProps) {
   breadcrumbs.unshift({
     name: "Home",
     path: "/",
-    render: <AiOutlineHome style={{ display: "inline" }} />,
+    render: <TbHome />,
   });
 
   if (breadcrumbs.length <= 1) {
@@ -37,7 +37,7 @@ export function Breadcrumbs({ breadcrumbs, className = "" }: BreadcrumbsProps) {
         >
           {breadcrumbs.map((breadcrumbs, i) => {
             return (
-              <li key={breadcrumbs.name}>
+              <li key={breadcrumbs.name} className="flex items-center">
                 {breadcrumbs.path ? (
                   <>
                     <Link
