@@ -1,21 +1,18 @@
 import { Calendar } from "@/components/calendar";
-import { Footer } from "@/components/footer";
 import { H1 } from "@/components/h1";
 import { Header } from "@/components/header";
 import { HolidaysList } from "@/components/holidays-list/holidays-list";
-import { Link } from "@/components/link";
 import { MonthList } from "@/components/month-list";
+import { MonthNav } from "@/components/month-nav";
 import { Nav } from "@/components/nav";
 import { SadCard } from "@/components/sad-card";
 import { Wrapper } from "@/components/wrapper";
 import { YearNav } from "@/components/year-nav";
-import { YearsList } from "@/components/years-list";
 import { useHolidays } from "@/hooks/use-holidays";
 import { useMonthNav } from "@/hooks/use-month-nav";
-import { getMonths, monthFormatter } from "@/utils/get-months";
+import { getMonths } from "@/utils/get-months";
 import { getYears } from "@/utils/get-years";
 import { notFound } from "next/navigation";
-import { useMemo } from "react";
 
 const monthNames = getMonths();
 interface MonthProps {
@@ -41,16 +38,13 @@ export default function Month({ params }: MonthProps) {
         <MonthList selectedMonth={month} selectedYear={year} />
       </Header>
       <Wrapper as="main" className="my-8">
-        <Nav
-          prev={{ name: "", path: prev.path }}
-          next={{ name: "", path: next.path }}
-          className="mb-8 items-center justify-center gap-4 text-xl font-bold"
-        >
-          <H1 className="mb-0">
-            {monthNames[month - 1]} {year}
-          </H1>
-        </Nav>
-        <Calendar month={month} year={year} className="mb-4" />
+        <MonthNav
+          year={year}
+          month={month}
+          className="mb-8 text-xl font-bold"
+          as={H1}
+        />
+        <Calendar month={month} year={year} className="mb-8" />
         {holidays.length === 0 ? (
           <SadCard>
             <p>

@@ -4,6 +4,7 @@ import { Celebration } from "@/components/celebration";
 import { H1 } from "@/components/h1";
 import { Header } from "@/components/header";
 import { MonthList } from "@/components/month-list";
+import { MonthNav } from "@/components/month-nav";
 import { Nav } from "@/components/nav";
 import { SadCard } from "@/components/sad-card";
 import { Wrapper } from "@/components/wrapper";
@@ -13,6 +14,7 @@ import {
   getDate as composeDate,
   longDateFormatter,
 } from "@/utils/date-helpers";
+import { monthFormatter } from "@/utils/get-months";
 import colombianHolidays from "colombian-holidays";
 import { isHoliday } from "colombian-holidays/lib/utils/isHoliday";
 import Image from "next/image";
@@ -63,7 +65,6 @@ export default function Day({ params }: DayProps) {
       </Header>
       <Wrapper as="main" className="my-8">
         <H1>Is Colombian Holiday?</H1>
-        <Calendar year={year} month={month} day={day} className="mb-4" />
         {isHoliday(date) ? (
           <Card variant="hero" disableHover>
             <p>{longDateFormatter.format(date)}</p>
@@ -78,7 +79,9 @@ export default function Day({ params }: DayProps) {
             <p className="mt-2 text-2xl font-bold">Not holiday.</p>
           </SadCard>
         )}
-        <Nav prev={prev} next={next} className="mt-4" />
+        <Nav prev={prev} next={next} className="mt-4 mb-8 text-sm" />
+        <MonthNav year={year} month={month} className="mb-2 text-lg" />
+        <Calendar year={year} month={month} day={day} />
       </Wrapper>
     </>
   );
