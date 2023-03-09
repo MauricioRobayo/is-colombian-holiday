@@ -44,3 +44,10 @@ export default function Year({ params }: YearProps) {
 export function generateStaticParams() {
   return getYears().map((year) => ({ year: String(year) }));
 }
+
+export function generateMetadata({ params }: { params: { year: string } }) {
+  return {
+    title: `Public Holidays in Colombia ${params.year}`,
+    description: `Complete list of all public Holidays in Colombia for year ${params.year}`,
+  };
+}

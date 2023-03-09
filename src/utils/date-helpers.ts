@@ -12,7 +12,7 @@ export const longDateFormatter = new Intl.DateTimeFormat("en-US", {
 TimeAgo.addDefaultLocale(en);
 export const timeAgo = new TimeAgo("en-US");
 
-export function getDate(year: number, month: number, day: number) {
+export function composeDate(year: number, month: number, day: number) {
   return new Date(parseDate(year, month, day));
 }
 
