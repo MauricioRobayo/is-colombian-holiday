@@ -6,7 +6,7 @@ interface HeaderProps {
 }
 export function Header({ children }: HeaderProps) {
   return (
-    <header className="grid place-items-center border-b-4 border-b-orange-600 bg-violet-600 py-12 px-4 text-center text-white">
+    <header className="grid place-items-center bg-violet-600 py-12 px-4 text-center text-white">
       <h2 className="text-3xl font-bold sm:text-4xl">
         <Link href="/">Colombian Holidays</Link>
       </h2>

@@ -7,7 +7,7 @@ interface H1Props {
 }
 export function H1({ children, className }: H1Props) {
   return (
-    <h1 className={twMerge("mb-8 text-2xl font-bold", className)}>
+    <h1 className={twMerge("mb-4 text-2xl font-bold", className)}>
       {children}
     </h1>
   );

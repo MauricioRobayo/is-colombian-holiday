@@ -9,6 +9,7 @@ import { MonthList } from "@/components/month-list";
 import { MonthNav } from "@/components/month-nav";
 import { Nav } from "@/components/nav";
 import { SadCard } from "@/components/sad-card";
+import { SubHeader } from "@/components/sub-header";
 import { Wrapper } from "@/components/wrapper";
 import { YearNav } from "@/components/year-nav";
 import {
@@ -64,7 +65,7 @@ export default function Day({ params }: DayProps) {
           selectedDay={day}
         />
       </Header>
-      <Breadcrumbs
+      <SubHeader
         breadcrumbs={[
           { name: String(year), path: String(year) },
           { name: String(month), path: `/${year}/${month}` },
@@ -88,9 +89,6 @@ export default function Day({ params }: DayProps) {
           </SadCard>
         )}
         <Nav prev={prev} next={next} className="mt-4 text-sm" />
-        <Link href="/" className="mt-8 block">
-          Upcoming holidays in Colombia
-        </Link>
       </Wrapper>
     </>
   );
