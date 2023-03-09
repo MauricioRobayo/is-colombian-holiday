@@ -15,7 +15,7 @@ export function ShareButton({
   children,
   variant = "default",
 }: ShareButtonProps) {
-  const hasShare = useHasShare() || true;
+  const hasShare = useHasShare();
 
   const clickHandler = () => {
     return window.navigator.share({
