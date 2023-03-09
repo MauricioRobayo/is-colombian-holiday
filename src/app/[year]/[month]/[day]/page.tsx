@@ -1,20 +1,16 @@
-import { Breadcrumbs } from "@/components/breadcrumbs";
-import { Calendar } from "@/components/calendar";
 import { Card } from "@/components/card";
 import { Celebration } from "@/components/celebration";
 import { H1 } from "@/components/h1";
 import { Header } from "@/components/header";
-import { Link } from "@/components/link";
 import { MonthList } from "@/components/month-list";
-import { MonthNav } from "@/components/month-nav";
 import { Nav } from "@/components/nav";
 import { SadCard } from "@/components/sad-card";
 import { SubHeader } from "@/components/sub-header";
 import { Wrapper } from "@/components/wrapper";
 import { YearNav } from "@/components/year-nav";
 import {
+  composeDate,
   formatDateAsPath,
-  getDate as composeDate,
   longDateFormatter,
 } from "@/utils/date-helpers";
 import colombianHolidays from "colombian-holidays";
@@ -101,4 +97,26 @@ export function generateStaticParams() {
     month: String(holiday.celebrationDate.getUTCMonth() + 1),
     day: String(holiday.celebrationDate.getUTCDate()),
   }));
+}
+
+export function generateMetadata({
+  params,
+}: {
+  params: { year: string; month: string; day: string };
+}) {
+  const date = composeDate(
+    Number(params.year),
+    Number(params.month),
+    Number(params.day)
+  );
+  const formattedDate = longDateFormatter.format(date);
+
+  return {
+    title: `${formattedDate} ${
+      isHoliday(date) ? "is a colombian holiday" : "is not a colombian holiday"
+    }`,
+    description: `Is ${formattedDate} a colombian holiday? ${
+      isHoliday(date) ? "It is Holiday :D" : "It is not Holiday :("
+    }`,
+  };
 }

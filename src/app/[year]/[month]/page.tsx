@@ -76,3 +76,15 @@ export function generateStaticParams() {
     }))
   );
 }
+
+export function generateMetadata({
+  params,
+}: {
+  params: { year: string; month: string };
+}) {
+  const monthName = monthNames[Number(params.month) - 1];
+  return {
+    title: `Public Holidays in Colombia for ${monthName}, ${params.year}`,
+    description: `Complete list of all public Holidays in Colombia for ${monthName}, ${params.year}`,
+  };
+}
