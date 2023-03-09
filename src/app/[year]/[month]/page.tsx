@@ -3,6 +3,7 @@ import { Calendar } from "@/components/calendar";
 import { H1 } from "@/components/h1";
 import { Header } from "@/components/header";
 import { HolidaysList } from "@/components/holidays-list/holidays-list";
+import { Link } from "@/components/link";
 import { MonthList } from "@/components/month-list";
 import { MonthNav } from "@/components/month-nav";
 import { Nav } from "@/components/nav";
@@ -61,7 +62,10 @@ export default function Month({ params }: MonthProps) {
         ) : (
           <HolidaysList holidays={holidays} month={month} />
         )}
-        <Nav prev={prev} next={next} className="mt-4" />
+        <Nav prev={prev} next={next} className="mt-4 text-sm" />
+        <Link href="/" className="mt-8 block">
+          Upcoming holidays in Colombia
+        </Link>
       </Wrapper>
     </>
   );
