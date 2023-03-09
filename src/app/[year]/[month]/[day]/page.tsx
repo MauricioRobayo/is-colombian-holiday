@@ -4,6 +4,7 @@ import { Card } from "@/components/card";
 import { Celebration } from "@/components/celebration";
 import { H1 } from "@/components/h1";
 import { Header } from "@/components/header";
+import { Link } from "@/components/link";
 import { MonthList } from "@/components/month-list";
 import { MonthNav } from "@/components/month-nav";
 import { Nav } from "@/components/nav";
@@ -86,7 +87,10 @@ export default function Day({ params }: DayProps) {
             <p className="mt-2 text-2xl font-bold">Not holiday.</p>
           </SadCard>
         )}
-        <Nav prev={prev} next={next} className="mt-8 text-sm" />
+        <Nav prev={prev} next={next} className="mt-4 text-sm" />
+        <Link href="/" className="mt-8 block">
+          Upcoming holidays in Colombia
+        </Link>
       </Wrapper>
     </>
   );
