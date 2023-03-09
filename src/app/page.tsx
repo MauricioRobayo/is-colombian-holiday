@@ -16,7 +16,7 @@ export default function Home() {
       </Header>
       <Wrapper as="main" className="my-8">
         <H1>Upcoming holidays in Colombia</H1>
-        <HolidaysList holidays={upcomingHolidays} className="my-8" />
+        <HolidaysList holidays={upcomingHolidays} className="mb-8" />
         <div>
           <Link href={`/${today.getUTCFullYear()}`}>
             Full list of {today.getUTCFullYear()} colombian holidays

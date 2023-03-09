@@ -1,4 +1,3 @@
-import { Breadcrumbs } from "@/components/breadcrumbs";
 import { Calendar } from "@/components/calendar";
 import { H1 } from "@/components/h1";
 import { Header } from "@/components/header";
@@ -8,6 +7,7 @@ import { MonthList } from "@/components/month-list";
 import { MonthNav } from "@/components/month-nav";
 import { Nav } from "@/components/nav";
 import { SadCard } from "@/components/sad-card";
+import { SubHeader } from "@/components/sub-header";
 import { Wrapper } from "@/components/wrapper";
 import { YearNav } from "@/components/year-nav";
 import { useHolidays } from "@/hooks/use-holidays";
@@ -39,7 +39,7 @@ export default function Month({ params }: MonthProps) {
         <YearNav selectedMonth={month} selectedYear={year} className="my-4" />
         <MonthList selectedMonth={month} selectedYear={year} />
       </Header>
-      <Breadcrumbs
+      <SubHeader
         breadcrumbs={[
           { name: String(year), path: String(year) },
           { name: String(month) },
@@ -49,10 +49,10 @@ export default function Month({ params }: MonthProps) {
         <MonthNav
           year={year}
           month={month}
-          className="mb-8 text-xl font-bold"
+          className="mb-4 text-xl font-bold"
           as={H1}
         />
-        <Calendar month={month} year={year} className="mb-8" />
+        <Calendar month={month} year={year} className="mb-4" />
         {holidays.length === 0 ? (
           <SadCard>
             <p>
@@ -63,9 +63,6 @@ export default function Month({ params }: MonthProps) {
           <HolidaysList holidays={holidays} month={month} />
         )}
         <Nav prev={prev} next={next} className="mt-4 text-sm" />
-        <Link href="/" className="mt-8 block">
-          Upcoming holidays in Colombia
-        </Link>
       </Wrapper>
     </>
   );

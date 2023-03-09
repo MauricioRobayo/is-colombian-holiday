@@ -1,8 +1,9 @@
-import { Breadcrumbs } from "@/components/breadcrumbs";
 import { H1 } from "@/components/h1";
 import { Header } from "@/components/header";
 import { HolidaysList } from "@/components/holidays-list/holidays-list";
+import { Link } from "@/components/link";
 import { MonthList } from "@/components/month-list";
+import { SubHeader } from "@/components/sub-header";
 import { Wrapper } from "@/components/wrapper";
 import { YearNav } from "@/components/year-nav";
 import { useHolidays } from "@/hooks/use-holidays";
@@ -28,10 +29,13 @@ export default function Year({ params }: YearProps) {
         <YearNav selectedYear={year} className="my-4" />
         <MonthList selectedYear={year} />
       </Header>
-      <Breadcrumbs breadcrumbs={[{ name: String(year) }]} />
+      <SubHeader breadcrumbs={[{ name: String(year) }]} />
       <Wrapper as="main" className="my-8">
         <H1>Holidays in Colombia {year}</H1>
         <HolidaysList holidays={holidays} />
+        <Link href="/" className="mt-8 block">
+          Upcoming holidays in Colombia
+        </Link>
       </Wrapper>
     </>
   );

@@ -3,13 +3,19 @@
 import { useHasShare } from "@/hooks/use-share";
 import { ReactNode } from "react";
 import { twMerge } from "tailwind-merge";
+import cn from "clsx";
 
 interface ShareButtonProps {
   className?: string;
   children: ReactNode;
+  variant?: "default" | "icon";
 }
-export function ShareButton({ className, children }: ShareButtonProps) {
-  const hasShare = useHasShare();
+export function ShareButton({
+  className,
+  children,
+  variant = "default",
+}: ShareButtonProps) {
+  const hasShare = useHasShare() || true;
 
   const clickHandler = () => {
     return window.navigator.share({
@@ -26,7 +32,11 @@ export function ShareButton({ className, children }: ShareButtonProps) {
     <button
       onClick={clickHandler}
       className={twMerge(
-        "flex items-center gap-2 rounded border-2 border-violet-600 bg-violet-600 py-2 px-4 text-white hover:bg-violet-500",
+        cn({
+          "flex items-center gap-2 rounded border-2 border-blue-600 bg-blue-600 py-2 px-4 text-white hover:bg-blue-500":
+            variant === "default",
+          "text-blue-600": variant === "icon",
+        }),
         className
       )}
     >
