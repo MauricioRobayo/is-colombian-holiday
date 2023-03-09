@@ -1,4 +1,5 @@
 import { ShareButton } from "@/components/share-button";
+import { Metadata } from "next";
 import { HiOutlineShare } from "react-icons/hi";
 import { Footer } from "../components/footer";
 import "./globals.css";
@@ -22,13 +23,16 @@ export default function RootLayout({
   );
 }
 
-export const metadata = {
+export const metadata: Metadata = {
   title: {
     default: "Colombian Holidays",
     template: "%s | Colombian Holidays",
   },
   description: "List of upcoming holidays in Colombia",
   keywords: ["holidays", "Colombia", "public holidays", "vacations"],
+  icons: {
+    icon: "/favicon.png",
+  },
   // openGraph: {
   //   title: "Colombian Holidays",
   //   description: "Public Holidays in Colombia",
