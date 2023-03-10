@@ -14,7 +14,7 @@ import {
   longDateFormatter,
 } from "@/utils/date-helpers";
 import colombianHolidays from "colombian-holidays";
-import { isHoliday } from "colombian-holidays/lib/utils/isHoliday";
+import { getHoliday } from "colombian-holidays/lib/utils/getHoliday";
 import { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
@@ -115,11 +115,12 @@ export function generateMetadata({
   const searchParams = new URLSearchParams({
     date: date.toISOString(),
   });
+  const holiday = getHoliday(date);
 
   return {
-    title: `Is ${formattedDate} holiday in Colombia?`,
+    title: formattedDate,
     description: `${formattedDate} ${
-      isHoliday(date) ? "is holiday in Colombia" : "is not holiday in Colombia"
+      holiday ? holiday.name.en : "Is not holiday in Colombia"
     }`,
     openGraph: {
       images: [
