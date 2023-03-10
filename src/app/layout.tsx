@@ -33,25 +33,12 @@ export const metadata: Metadata = {
   icons: {
     icon: "/favicon.png",
   },
-  // openGraph: {
-  //   title: "Colombian Holidays",
-  //   description: "Public Holidays in Colombia",
-  //   url: "https://iscolombian.holiday",
-  //   siteName: "Colombian Holidays",
-  //   images: [
-  //     {
-  //       url: "https://nextjs.org/og.png",
-  //       width: 800,
-  //       height: 600,
-  //     },
-  //     {
-  //       url: "https://nextjs.org/og-alt.png",
-  //       width: 1800,
-  //       height: 1600,
-  //       alt: "My custom alt",
-  //     },
-  //   ],
-  //   locale: "en-US",
-  //   type: "website",
-  // },
+  openGraph: {
+    title: "Colombian Holidays",
+    description: "Public Holidays in Colombia",
+    url: "https://iscolombian.holiday",
+    siteName: "Colombian Holidays",
+    locale: "en-US",
+    type: "website",
+  },
 };
