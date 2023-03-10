@@ -15,6 +15,7 @@ import {
 } from "@/utils/date-helpers";
 import colombianHolidays from "colombian-holidays";
 import { isHoliday } from "colombian-holidays/lib/utils/isHoliday";
+import { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { useMemo } from "react";
@@ -74,14 +75,14 @@ export default function Day({ params }: DayProps) {
           <Card variant="hero" disableHover>
             <p>{longDateFormatter.format(date)}</p>
             <Celebration className="h-16 text-2xl font-bold">
-              Is holiday!
+              Is Holiday!
             </Celebration>
             <Image src={happyFace} alt="smiley face" />
           </Card>
         ) : (
           <SadCard>
             <p>{longDateFormatter.format(date)}</p>
-            <p className="mt-2 text-2xl font-bold">Not holiday.</p>
+            <p className="mt-2 text-2xl font-bold">Not Holiday.</p>
           </SadCard>
         )}
         <Nav prev={prev} next={next} className="mt-4 text-sm" />
@@ -103,7 +104,7 @@ export function generateMetadata({
   params,
 }: {
   params: { year: string; month: string; day: string };
-}) {
+}): Metadata {
   const date = composeDate(
     Number(params.year),
     Number(params.month),
@@ -112,11 +113,18 @@ export function generateMetadata({
   const formattedDate = longDateFormatter.format(date);
 
   return {
-    title: `${formattedDate} ${
-      isHoliday(date) ? "is a colombian holiday" : "is not a colombian holiday"
+    title: `Is ${formattedDate} holiday in Colombia?`,
+    description: `${formattedDate} ${
+      isHoliday(date) ? "is holiday in Colombia" : "is not holiday in Colombia"
     }`,
-    description: `Is ${formattedDate} a colombian holiday? ${
-      isHoliday(date) ? "It is Holiday :D" : "It is not Holiday :("
-    }`,
+    openGraph: {
+      images: [
+        {
+          url: `https://iscolombian.holidayG/api/og?date=${date.toISOString()}`,
+          width: 1200,
+          height: 630,
+        },
+      ],
+    },
   };
 }
