@@ -8,7 +8,7 @@ specifiers:
   autoprefixer: ^10.4.13
   axios: ^1.3.3
   clsx: ^1.2.1
-  colombian-holidays: ^4.1.0
+  colombian-holidays: ^4.1.1
   eslint: 8.33.0
   eslint-config-next: 13.1.6
   javascript-time-ago: ^2.5.9
@@ -32,7 +32,7 @@ dependencies:
   autoprefixer: 10.4.13_postcss@8.4.21
   axios: 1.3.3
   clsx: 1.2.1
-  colombian-holidays: 4.1.0
+  colombian-holidays: 4.1.1
   eslint: 8.33.0
   eslint-config-next: 13.1.6_4vsywjlpuriuw3tl5oq6zy5a64
   javascript-time-ago: 2.5.9
@@ -649,8 +649,8 @@ packages:
     engines: {node: '>=6'}
     dev: false
 
-  /colombian-holidays/4.1.0:
-    resolution: {integrity: sha512-uBawcL1xV2J8H420XJGxzG6ALKWbg2m8nsFE5Y454G4YTU9w0Ls14NjvRVTMDAIcnkl7luYFQZByWPETIK89ag==}
+  /colombian-holidays/4.1.1:
+    resolution: {integrity: sha512-jjm5bMkH1GBKW2wwrDfEhPVbueiAXya6JAiJS+36hyM+qmZQKQvSCh3BEQIfU4mJzYWUpXDEbQe32BhJ/tnezQ==}
     dependencies:
       pascua: 2.1.6
     dev: false
