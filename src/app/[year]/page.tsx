@@ -8,6 +8,7 @@ import { Wrapper } from "@/components/wrapper";
 import { YearNav } from "@/components/year-nav";
 import { useHolidays } from "@/hooks/use-holidays";
 import { getYears } from "@/utils/get-years";
+import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 interface YearProps {
@@ -45,9 +46,21 @@ export function generateStaticParams() {
   return getYears().map((year) => ({ year: String(year) }));
 }
 
-export function generateMetadata({ params }: { params: { year: string } }) {
+export function generateMetadata({
+  params,
+}: {
+  params: { year: string };
+}): Metadata {
   return {
     title: `Public Holidays in Colombia ${params.year}`,
     description: `Complete list of all public Holidays in Colombia for year ${params.year}`,
+    openGraph: {
+      title: `Public Holidays in Colombia ${params.year}`,
+      description: `Complete list of all public Holidays in Colombia for year ${params.year}`,
+      url: `https://iscolombian.holiday/${params.year}`,
+      siteName: "Colombian Holidays",
+      locale: "en-US",
+      type: "website",
+    },
   };
 }

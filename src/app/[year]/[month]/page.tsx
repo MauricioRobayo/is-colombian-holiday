@@ -14,6 +14,7 @@ import { useHolidays } from "@/hooks/use-holidays";
 import { useMonthNav } from "@/hooks/use-month-nav";
 import { getMonths } from "@/utils/get-months";
 import { getYears } from "@/utils/get-years";
+import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 const monthNames = getMonths();
@@ -81,10 +82,18 @@ export function generateMetadata({
   params,
 }: {
   params: { year: string; month: string };
-}) {
+}): Metadata {
   const monthName = monthNames[Number(params.month) - 1];
   return {
     title: `Public Holidays in Colombia for ${monthName}, ${params.year}`,
     description: `Complete list of all public Holidays in Colombia for ${monthName}, ${params.year}`,
+    openGraph: {
+      title: `Public Holidays in Colombia for ${monthName}, ${params.year}`,
+      description: `Complete list of all public Holidays in Colombia for ${monthName}, ${params.year}`,
+      url: `https://iscolombian.holiday/${params.year}/${params.month}`,
+      siteName: "Colombian Holidays",
+      locale: "en-US",
+      type: "website",
+    },
   };
 }
