@@ -105,12 +105,16 @@ export function generateMetadata({
 }: {
   params: { year: string; month: string; day: string };
 }): Metadata {
+  const apiBaseUrl = process.env.API_BASE_URL ?? "/api";
   const date = composeDate(
     Number(params.year),
     Number(params.month),
     Number(params.day)
   );
   const formattedDate = longDateFormatter.format(date);
+  const searchParams = new URLSearchParams({
+    date: date.toISOString(),
+  });
 
   return {
     title: `Is ${formattedDate} holiday in Colombia?`,
@@ -120,7 +124,7 @@ export function generateMetadata({
     openGraph: {
       images: [
         {
-          url: `https://iscolombian.holidayG/api/og?date=${date.toISOString()}`,
+          url: `${apiBaseUrl}/og?${searchParams}`,
           width: 1200,
           height: 630,
         },
