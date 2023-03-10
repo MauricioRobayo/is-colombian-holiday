@@ -15,6 +15,7 @@ import {
 } from "@/utils/date-helpers";
 import colombianHolidays from "colombian-holidays";
 import { getHoliday } from "colombian-holidays/lib/utils/getHoliday";
+import { isHoliday } from "colombian-holidays/lib/utils/isHoliday";
 import { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
