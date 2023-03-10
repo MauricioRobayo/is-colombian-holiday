@@ -105,8 +105,7 @@ export function generateMetadata({
 }: {
   params: { year: string; month: string; day: string };
 }): Metadata {
-  const apiBaseUrl =
-    process.env.API_BASE_URL ?? "https://iscolombian.holiday/api";
+  const apiBaseUrl = process.env.API_BASE_URL ?? "/api";
   const date = composeDate(
     Number(params.year),
     Number(params.month),
