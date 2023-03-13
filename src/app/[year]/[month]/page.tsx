@@ -46,12 +46,12 @@ export default function Month({ params }: MonthProps) {
         ]}
       />
       <Wrapper as="main" className="my-8">
-        <MonthNav
-          year={year}
-          month={month}
-          className="mb-4 text-xl font-bold"
-          as={H1}
-        />
+        <H1>
+          Holidays in Colombia
+          <br />
+          {monthNames[month - 1]} {year}
+        </H1>
+        <MonthNav year={year} month={month} className="text-md mb-2" />
         <Calendar month={month} year={year} className="mb-4" />
         {holidays.length === 0 ? (
           <SadCard>
@@ -84,8 +84,8 @@ export function generateMetadata({
 }): Metadata {
   const monthName = monthNames[Number(params.month) - 1];
   return {
-    title: `Public Holidays in Colombia for ${monthName}, ${params.year}`,
-    description: `Complete list of all public Holidays in Colombia for ${monthName}, ${params.year}`,
+    title: `Public Holidays in Colombia during ${monthName}, ${params.year}`,
+    description: `Complete list of all public Holidays in Colombia during ${monthName}, ${params.year}`,
     openGraph: {
       title: `Public Holidays in Colombia for ${monthName}, ${params.year}`,
       description: `Complete list of all public Holidays in Colombia for ${monthName}, ${params.year}`,

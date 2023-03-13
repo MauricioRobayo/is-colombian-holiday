@@ -27,7 +27,7 @@ export function MonthNav({
       className={twMerge("justify-center gap-2", className)}
     >
       <As className="mb-0">
-        {monthNames[month - 1]} {year}
+        {monthNames[month - 1].slice(0, 3)} {year}
       </As>
     </Nav>
   );
