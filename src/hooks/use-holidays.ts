@@ -26,10 +26,13 @@ export function useHolidays({ year, month }: HolidaysOptions) {
 export function addUpcomingHoliday(
   holidays: ReadonlyArray<ColombianHolidayWithNativeDate>
 ) {
-  return holidays.map((holiday, index) => ({
-    ...holiday,
-    isUpcoming:
-      holidays[index - 1]?.celebrationDate < new Date() &&
-      holiday.celebrationDate > new Date(),
-  }));
+  return holidays.map((holiday, index) => {
+    const today = new Date();
+    return {
+      ...holiday,
+      isUpcoming:
+        holidays[index - 1]?.celebrationDate <= today &&
+        holiday.celebrationDate > today,
+    };
+  });
 }
