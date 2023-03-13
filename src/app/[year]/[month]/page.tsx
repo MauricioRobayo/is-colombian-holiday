@@ -2,7 +2,6 @@ import { Calendar } from "@/components/calendar";
 import { H1 } from "@/components/h1";
 import { Header } from "@/components/header";
 import { HolidaysList } from "@/components/holidays-list/holidays-list";
-import { Link } from "@/components/link";
 import { MonthList } from "@/components/month-list";
 import { MonthNav } from "@/components/month-nav";
 import { Nav } from "@/components/nav";
