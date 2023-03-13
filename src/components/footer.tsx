@@ -1,6 +1,6 @@
+import { EmailObfuscator } from "./email-obfuscator";
 import { Wrapper } from "./wrapper";
 import { YearsList } from "./years-list";
-import { Email } from "react-obfuscate-email";
 
 export function Footer() {
   return (
@@ -14,9 +14,9 @@ export function Footer() {
           Colombia has 18 holidays (12 Catholic holidays and 6 Civic holidays),
           plus Palm and Easter Sunday.
         </p>
-      </Wrapper>
-      <Wrapper>
-        <Email email="info@colombian.holidays"></Email>
+        <p>
+          <EmailObfuscator email="info@colombian.holidays"></EmailObfuscator>
+        </p>
       </Wrapper>
     </footer>
   );

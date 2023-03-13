@@ -19,7 +19,7 @@ specifiers:
   react: 18.2.0
   react-dom: 18.2.0
   react-icons: ^4.8.0
-  react-obfuscate-email: ^1.1.1
+  react-obfuscate-email: ^1.1.2
   svg-emojis: ^0.0.8
   tailwind-merge: ^1.10.0
   tailwindcss: ^3.2.6
@@ -42,7 +42,7 @@ dependencies:
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-icons: 4.8.0_react@18.2.0
-  react-obfuscate-email: 1.1.1_react@18.2.0
+  react-obfuscate-email: 1.1.2_react@18.2.0
   svg-emojis: 0.0.8
   tailwind-merge: 1.10.0
   tailwindcss: 3.2.6_postcss@8.4.21
@@ -2289,8 +2289,8 @@ packages:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
     dev: false
 
-  /react-obfuscate-email/1.1.1_react@18.2.0:
-    resolution: {integrity: sha512-bDP3I4AlWpuNbCKOwQhTPutpDmsIiEo7ChnDlmywIwRcgdowBSw8FfhtlSFWtvn7Nu2k6BNR0/FMfenQ9k5gLw==}
+  /react-obfuscate-email/1.1.2_react@18.2.0:
+    resolution: {integrity: sha512-P/c35IClgLtdwkzrD4bnDlfI5SAJKiINd+jJVW9ccfQ1k7l5mB69qplZfvZ4DPvRjdtYU3YeUvOLIdECzHiR6g==}
     engines: {node: '>=12'}
     peerDependencies:
       react: '>=16'
