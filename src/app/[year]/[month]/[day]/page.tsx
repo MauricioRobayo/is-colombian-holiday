@@ -34,6 +34,7 @@ export default function Day({ params }: DayProps) {
   const month = Number(params.month);
   const day = Number(params.day);
   const date = composeDate(year, month, day);
+  const longFormattedDate = longDateFormatter.format(date);
   const { prev, next } = useMemo(() => {
     const prevDay = new Date(Date.UTC(year, month - 1, day - 1));
     const nextDay = new Date(Date.UTC(year, month - 1, day + 1));
@@ -71,10 +72,10 @@ export default function Day({ params }: DayProps) {
         ]}
       />
       <Wrapper as="main" className="my-8">
-        <H1>Is Colombian Holiday?</H1>
+        <H1>Is {longFormattedDate} holiday in Colombia?</H1>
         {isHoliday(date) ? (
           <Card variant="hero" disableHover>
-            <p>{longDateFormatter.format(date)}</p>
+            <p>{longFormattedDate}</p>
             <Celebration className="h-16 text-2xl font-bold">
               Is Holiday!
             </Celebration>
@@ -82,7 +83,7 @@ export default function Day({ params }: DayProps) {
           </Card>
         ) : (
           <SadCard>
-            <p>{longDateFormatter.format(date)}</p>
+            <p>{longFormattedDate}</p>
             <p className="mt-2 text-2xl font-bold">Not Holiday.</p>
           </SadCard>
         )}
