@@ -1,11 +1,11 @@
 import { Calendar } from "@/components/calendar";
+import { Card } from "@/components/card";
 import { H1 } from "@/components/h1";
 import { Header } from "@/components/header";
 import { HolidaysList } from "@/components/holidays-list/holidays-list";
 import { MonthList } from "@/components/month-list";
 import { MonthNav } from "@/components/month-nav";
 import { Nav } from "@/components/nav";
-import { SadCard } from "@/components/sad-card";
 import { SubHeader } from "@/components/sub-header";
 import { Wrapper } from "@/components/wrapper";
 import { YearNav } from "@/components/year-nav";
@@ -15,6 +15,8 @@ import { getMonths } from "@/utils/get-months";
 import { getYears } from "@/utils/get-years";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
+import sadFace from "svg-emojis/twemoji/1f622.svg";
+import Image from "next/image";
 
 const monthNames = getMonths();
 interface MonthProps {
@@ -54,11 +56,12 @@ export default function Month({ params }: MonthProps) {
         <MonthNav year={year} month={month} className="text-md mb-2" />
         <Calendar month={month} year={year} className="mb-4" />
         {holidays.length === 0 ? (
-          <SadCard>
+          <Card variant="hero">
             <p>
-              No holidays in {monthNames[month - 1]}, {year}.
+              No holidays in {monthNames[month - 1]} {year}
             </p>
-          </SadCard>
+            <Image src={sadFace} alt="crying face" />
+          </Card>
         ) : (
           <HolidaysList holidays={holidays} month={month} />
         )}

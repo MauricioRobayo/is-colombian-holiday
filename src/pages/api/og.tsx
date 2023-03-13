@@ -1,5 +1,6 @@
 import { longDateFormatter } from "@/utils/date-helpers";
 import { ImageResponse } from "@vercel/og";
+import { getHoliday } from "colombian-holidays/lib/utils/getHoliday";
 import { isHoliday } from "colombian-holidays/lib/utils/isHoliday";
 import { NextRequest } from "next/server";
 
@@ -14,6 +15,7 @@ export default function handler(req: NextRequest) {
 
     if (requestedDate) {
       const date = new Date(requestedDate);
+      const holiday = getHoliday(date);
       const formattedDate = longDateFormatter.format(date);
 
       return new ImageResponse(
@@ -39,16 +41,27 @@ export default function handler(req: NextRequest) {
                 alignItems: "center",
                 justifyContent: "center",
                 backgroundColor: "white",
-                gap: "48px",
+                gap: "32px",
                 border: "16px solid orange",
                 borderRadius: "32px",
               }}
             >
-              <div tw="text-6xl">{formattedDate}</div>
-              <div tw="text-8xl font-bold" style={{ fontWeight: "bold" }}>
-                {isHoliday(date) ? "🎆 Is Holiday! 🎆" : "Not Holiday"}
+              <div tw="text-7xl font-bold" style={{ fontWeight: "bold" }}>
+                {holiday ? "🎆 Is Holiday! 🎆" : "Not Holiday"}
               </div>
-              <div tw="text-8xl">{isHoliday(date) ? "😀" : "😢"}</div>
+              <div tw="text-7xl">{isHoliday(date) ? "😀" : "😢"}</div>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  gap: "24px",
+                }}
+                tw="text-5xl"
+              >
+                <div>{formattedDate}</div>
+                {holiday ? <div>{holiday.name.en}</div> : null}
+              </div>
             </div>
           </div>
         ),

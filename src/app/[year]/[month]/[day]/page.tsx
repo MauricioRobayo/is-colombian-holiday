@@ -4,7 +4,6 @@ import { H1 } from "@/components/h1";
 import { Header } from "@/components/header";
 import { MonthList } from "@/components/month-list";
 import { Nav } from "@/components/nav";
-import { SadCard } from "@/components/sad-card";
 import { SubHeader } from "@/components/sub-header";
 import { Wrapper } from "@/components/wrapper";
 import { YearNav } from "@/components/year-nav";
@@ -15,12 +14,12 @@ import {
 } from "@/utils/date-helpers";
 import colombianHolidays from "colombian-holidays";
 import { getHoliday } from "colombian-holidays/lib/utils/getHoliday";
-import { isHoliday } from "colombian-holidays/lib/utils/isHoliday";
 import { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { useMemo } from "react";
 import happyFace from "svg-emojis/twemoji/1f600.svg";
+import sadFace from "svg-emojis/twemoji/1f622.svg";
 
 interface DayProps {
   params: {
@@ -35,6 +34,7 @@ export default function Day({ params }: DayProps) {
   const day = Number(params.day);
   const date = composeDate(year, month, day);
   const longFormattedDate = longDateFormatter.format(date);
+  const holiday = getHoliday(date);
   const { prev, next } = useMemo(() => {
     const prevDay = new Date(Date.UTC(year, month - 1, day - 1));
     const nextDay = new Date(Date.UTC(year, month - 1, day + 1));
@@ -73,19 +73,23 @@ export default function Day({ params }: DayProps) {
       />
       <Wrapper as="main" className="my-8">
         <H1>Is {longFormattedDate} holiday in Colombia?</H1>
-        {isHoliday(date) ? (
+        {holiday ? (
           <Card variant="hero" disableHover>
-            <p>{longFormattedDate}</p>
             <Celebration className="h-16 text-2xl font-bold">
               Is Holiday!
             </Celebration>
             <Image src={happyFace} alt="smiley face" />
+            <div>
+              <p>{longFormattedDate}</p>
+              <p>{holiday.name.en}</p>
+            </div>
           </Card>
         ) : (
-          <SadCard>
+          <Card variant="hero">
+            <p className="text-2xl font-bold">Not Holiday</p>
+            <Image src={sadFace} alt="crying face" />
             <p>{longFormattedDate}</p>
-            <p className="mt-2 text-2xl font-bold">Not Holiday.</p>
-          </SadCard>
+          </Card>
         )}
         <Nav prev={prev} next={next} className="mt-4 text-sm" />
       </Wrapper>
