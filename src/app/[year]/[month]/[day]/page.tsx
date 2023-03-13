@@ -125,12 +125,11 @@ export function generateMetadata({
     }`,
     openGraph: {
       title: formattedDate,
-      description: holiday
-        ? `Is ${holiday.name.en} :D`
-        : "Is not holiday in Colombia :(",
+      description: holiday ? holiday.name.en : "Not holiday in Colombia",
       siteName: "Colombian Holidays",
       locale: "en-US",
       type: "website",
+      url: `https://iscolombian.holiday/${params.year}/${params.month}/${params.day}`,
       images: [
         {
           url: `${apiBaseUrl}/og?${searchParams}`,
