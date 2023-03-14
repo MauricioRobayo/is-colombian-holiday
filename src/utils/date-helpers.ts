@@ -7,6 +7,7 @@ export const longDateFormatter = new Intl.DateTimeFormat("en-US", {
   month: "long",
   day: "numeric",
   year: "numeric",
+  timeZone: "UTC",
 });
 
 TimeAgo.addDefaultLocale(en);
