@@ -8,7 +8,7 @@ import { Card, CardProps } from "../card";
 export interface ListItemProps {
   date: Date;
   name: string;
-  variant?: CardProps["variant"];
+  variant?: CardProps<"li">["variant"];
 }
 export function HolidayListItem({
   date,

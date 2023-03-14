@@ -1,16 +1,16 @@
-import { ElementType, ReactNode } from "react";
+import { ComponentPropsWithoutRef, ElementType, ReactNode } from "react";
 import cn from "clsx";
 import { twMerge } from "tailwind-merge";
 
-export interface Props<T extends ElementType> {
+export interface CardProps<T extends ElementType = "div"> {
   variant?: "dim" | "highlight" | "hero" | "default";
   children: ReactNode;
   as?: T;
   className?: string;
   disableHover?: boolean;
 }
-type CardProps<T extends React.ElementType> = Props<T> &
-  Omit<React.ComponentPropsWithoutRef<T>, keyof Props<T>>;
+type Props<T extends ElementType> = CardProps<T> &
+  Omit<ComponentPropsWithoutRef<T>, keyof CardProps<T>>;
 export function Card<T extends ElementType = "div">({
   variant = "default",
   children,
@@ -18,7 +18,7 @@ export function Card<T extends ElementType = "div">({
   className,
   disableHover = false,
   ...other
-}: CardProps<T>) {
+}: Props<T>) {
   const dim = variant === "dim";
   const highlight = variant === "highlight";
   const hero = variant === "hero";
