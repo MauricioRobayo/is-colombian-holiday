@@ -2,25 +2,29 @@ import { ElementType, ReactNode } from "react";
 import cn from "clsx";
 import { twMerge } from "tailwind-merge";
 
-export interface CardProps {
+export interface Props<T extends ElementType> {
   variant?: "dim" | "highlight" | "hero" | "default";
   children: ReactNode;
-  as?: ElementType;
+  as?: T;
   className?: string;
   disableHover?: boolean;
 }
-export function Card({
+type CardProps<T extends React.ElementType> = Props<T> &
+  Omit<React.ComponentPropsWithoutRef<T>, keyof Props<T>>;
+export function Card<T extends ElementType = "div">({
   variant = "default",
   children,
-  as: As = "div",
+  as,
   className,
   disableHover = false,
-}: CardProps) {
+  ...other
+}: CardProps<T>) {
   const dim = variant === "dim";
   const highlight = variant === "highlight";
   const hero = variant === "hero";
+  const Component = as ?? "div";
   return (
-    <As
+    <Component
       className={twMerge(
         "rounded-lg border-2 border-orange-200 bg-white p-4 shadow-sm",
         cn({
@@ -32,8 +36,9 @@ export function Card({
         }),
         className
       )}
+      {...other}
     >
       {children}
-    </As>
+    </Component>
   );
 }

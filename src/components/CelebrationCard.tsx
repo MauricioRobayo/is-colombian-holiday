@@ -16,7 +16,7 @@ export function CelebrationCard({
   className,
 }: CelebrationCardProps) {
   return (
-    <Card variant="hero" disableHover className={className}>
+    <Card variant="hero" disableHover className={className} role="">
       <Celebration className="h-16 text-2xl font-bold">{title}</Celebration>
       <Image src={happyFace} alt="smiley face" />
       <div>

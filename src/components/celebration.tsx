@@ -17,7 +17,9 @@ export function Celebration({ className, children }: CelebrationProps) {
       )}
     >
       <Image src={stars} alt="stars" className="h-full" />
-      <span className="flex-shrink-0">{children}</span>
+      <span className="flex-shrink-0" role="">
+        {children}
+      </span>
       <Image
         src={stars}
         alt="stars"

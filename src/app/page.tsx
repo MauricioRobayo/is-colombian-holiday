@@ -19,7 +19,7 @@ export default function Home() {
       <Header>
         <YearsList className="mt-8" />
       </Header>
-      <Wrapper as="main" className="my-8">
+      <Wrapper as="aside" className="mt-8 mb-4">
         {holiday ? (
           <CelebrationCard
             longFormattedDate={longDateFormatter.format(today)}
@@ -32,7 +32,9 @@ export default function Home() {
             title="Today is not holiday"
           />
         )}
-        <H1 className="mt-8">Upcoming holidays in Colombia</H1>
+      </Wrapper>
+      <Wrapper as="main" className="mb-8">
+        <H1>Upcoming holidays in Colombia</H1>
         <HolidaysList holidays={upcomingHolidays} className="mb-8" />
         <div>
           <Link href={`/${today.getUTCFullYear()}`}>
