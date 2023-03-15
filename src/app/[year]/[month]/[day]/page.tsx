@@ -71,12 +71,16 @@ export default function Day({ params }: DayProps) {
       <Wrapper as="main" className="my-8">
         <H1>Is {longFormattedDate} holiday in Colombia?</H1>
         {holiday ? (
-          <CelebrationCard
-            holidayName={holiday.name.en}
-            longFormattedDate={longFormattedDate}
-          />
+          <CelebrationCard>
+            <div>
+              <p>{longFormattedDate}</p>
+              <p>{holiday.name.en}</p>
+            </div>
+          </CelebrationCard>
         ) : (
-          <SadCard longFormattedDate={longFormattedDate} />
+          <SadCard>
+            <p>{longFormattedDate}</p>
+          </SadCard>
         )}
         <Nav prev={prev} next={next} className="mt-4 text-sm" />
       </Wrapper>
