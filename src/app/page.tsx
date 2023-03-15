@@ -7,7 +7,7 @@ import { SadCard } from "@/components/SadCard";
 import { Wrapper } from "@/components/wrapper";
 import { YearsList } from "@/components/years-list";
 import { useUpcomingHolidays } from "@/hooks/use-upcoming-holidays";
-import { longDateFormatter } from "@/utils/date-helpers";
+import { formatDateAsPath, longDateFormatter } from "@/utils/date-helpers";
 import { getHoliday } from "colombian-holidays/lib/utils/getHoliday";
 
 export default function Home() {
@@ -21,16 +21,24 @@ export default function Home() {
       </Header>
       <Wrapper as="aside" className="mt-8 mb-4">
         {holiday ? (
-          <CelebrationCard
-            longFormattedDate={longDateFormatter.format(today)}
-            holidayName={holiday.name.en}
-            title="Today is holiday!"
-          />
+          <CelebrationCard title="Today is holiday!">
+            <div>
+              <p>
+                <Link href={formatDateAsPath(today)}>
+                  {longDateFormatter.format(today)}
+                </Link>
+              </p>
+              <p>{holiday.name.en}</p>
+            </div>
+          </CelebrationCard>
         ) : (
-          <SadCard
-            longFormattedDate={longDateFormatter.format(today)}
-            title="Today is not holiday"
-          />
+          <SadCard title="Today is not holiday">
+            <p>
+              <Link href={formatDateAsPath(today)}>
+                {longDateFormatter.format(today)}
+              </Link>
+            </p>
+          </SadCard>
         )}
       </Wrapper>
       <Wrapper as="main" className="mb-8">
