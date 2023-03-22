@@ -1,6 +1,6 @@
 "use client";
 
-import { useHasShare } from "@/hooks/use-share";
+import { useHasShare } from "@/hooks/use-has-share";
 import { ReactNode } from "react";
 import { twMerge } from "tailwind-merge";
 import cn from "clsx";
