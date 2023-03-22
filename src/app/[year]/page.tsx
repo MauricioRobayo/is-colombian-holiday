@@ -1,3 +1,4 @@
+import { DownloadCsv } from "@/components/download-csv";
 import { H1 } from "@/components/h1";
 import { Header } from "@/components/header";
 import { HolidaysList } from "@/components/holidays-list/holidays-list";
@@ -10,6 +11,7 @@ import { useHolidays } from "@/hooks/use-holidays";
 import { getYears } from "@/utils/get-years";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { FiDownload } from "react-icons/fi";
 
 interface YearProps {
   params: {
@@ -19,6 +21,13 @@ interface YearProps {
 export default function Year({ params }: YearProps) {
   const year = Number(params.year);
   const holidays = useHolidays({ year });
+  const csvData = [
+    ["name", "celebrationDate"],
+    ...(holidays?.map((holiday) => [
+      `"${holiday.name.en}"`,
+      holiday.celebrationDate.toISOString().slice(0, 10),
+    ]) ?? []),
+  ];
 
   if (!holidays) {
     return notFound();
@@ -32,7 +41,11 @@ export default function Year({ params }: YearProps) {
       </Header>
       <SubHeader breadcrumbs={[{ name: String(year) }]} />
       <Wrapper as="main" className="my-8">
-        <H1>Holidays in Colombia {year}</H1>
+        <H1 className="mb-0">Holidays in Colombia {year}</H1>
+        <DownloadCsv data={csvData} className="mb-4 justify-center text-sm">
+          colombian-holidays-{year}.csv
+          <FiDownload />
+        </DownloadCsv>
         <HolidaysList holidays={holidays} />
         <Link href="/" className="mt-8 block">
           Upcoming holidays in Colombia
