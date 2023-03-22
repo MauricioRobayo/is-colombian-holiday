@@ -21,21 +21,22 @@ export function ShareButton({
   const [copied, setCopied] = useState(false);
 
   const clickHandler = () => {
-    if (hasClipboard) {
-      window.navigator.clipboard.writeText(window.location.href);
-      setCopied(true);
-      const timeout = setTimeout(() => {
-        setCopied(false);
-      }, 2000);
-      return () => {
-        clearTimeout(timeout);
-      };
+    if (hasShare) {
+      window.navigator.share({
+        url: window.location.href,
+        title: window.document.title,
+      });
+      return;
     }
 
-    window.navigator.share({
-      url: window.location.href,
-      title: window.document.title,
-    });
+    window.navigator.clipboard.writeText(window.location.href);
+    setCopied(true);
+    const timeout = setTimeout(() => {
+      setCopied(false);
+    }, 2000);
+    return () => {
+      clearTimeout(timeout);
+    };
   };
 
   if (hasShare || hasClipboard) {
