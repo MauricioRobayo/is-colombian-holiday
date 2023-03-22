@@ -3,7 +3,7 @@ import { H1 } from "@/components/h1";
 import { Header } from "@/components/header";
 import { MonthList } from "@/components/month-list";
 import { Nav } from "@/components/nav";
-import { SadCard } from "@/components/SadCard";
+import { SadCard } from "@/components/sad-card";
 import { SubHeader } from "@/components/sub-header";
 import { Wrapper } from "@/components/wrapper";
 import { YearNav } from "@/components/year-nav";

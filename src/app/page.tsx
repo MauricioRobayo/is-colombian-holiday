@@ -3,7 +3,7 @@ import { H1 } from "@/components/h1";
 import { Header } from "@/components/header";
 import { HolidaysList } from "@/components/holidays-list/holidays-list";
 import { Link } from "@/components/link";
-import { SadCard } from "@/components/SadCard";
+import { SadCard } from "@/components/sad-card";
 import { Wrapper } from "@/components/wrapper";
 import { YearsList } from "@/components/years-list";
 import { useUpcomingHolidays } from "@/hooks/use-upcoming-holidays";
