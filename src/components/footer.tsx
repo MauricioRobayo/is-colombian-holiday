@@ -14,8 +14,9 @@ export function Footer() {
           Colombia has 18 holidays (12 Catholic holidays and 6 Civic holidays),
           plus Palm and Easter Sunday.
         </p>
+        <p>Something wrong? Let us know:</p>
         <p>
-          <EmailObfuscator email="info@colombian.holidays"></EmailObfuscator>
+          <EmailObfuscator email="info@iscolombian.holiday"></EmailObfuscator>
         </p>
       </Wrapper>
     </footer>
