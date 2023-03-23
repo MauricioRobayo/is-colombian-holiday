@@ -18,9 +18,9 @@ const units: Array<{ amount: number; name: Intl.RelativeTimeFormatUnit }> = [
 ];
 export function timeAgo(date: Date) {
   const startOfDate = new Date(new Date(date).setUTCHours(0, 0, 0, 0));
-  const today = new Date();
+  const startOfToday = new Date(new Date().setUTCHours(0, 0, 0, 0));
   let duration =
-    (startOfDate.getTime() - today.getTime()) / 1000 / 60 / 60 / 24;
+    (startOfDate.getTime() - startOfToday.getTime()) / 1000 / 60 / 60 / 24;
   for (const { amount, name } of units) {
     if (Math.abs(duration) < amount) {
       return relativeTime.format(Math.round(duration), name);
