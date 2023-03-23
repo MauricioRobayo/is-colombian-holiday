@@ -1,4 +1,3 @@
-import { ColombianHolidayWithNativeDate } from "colombian-holidays/lib/types";
 import { holidaysWithinInterval } from "colombian-holidays/lib/utils/holidaysWithinInterval";
 import { useMemo } from "react";
 import { addUpcomingHoliday } from "./use-holidays";
