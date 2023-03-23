@@ -1,5 +1,4 @@
 import { FIRST_HOLIDAY_YEAR, LAST_HOLIDAY_YEAR } from "colombian-holidays";
-import { realpath } from "fs";
 
 export const longDateFormatter = new Intl.DateTimeFormat("en-US", {
   weekday: "long",
@@ -9,14 +8,15 @@ export const longDateFormatter = new Intl.DateTimeFormat("en-US", {
   timeZone: "UTC",
 });
 
-// based on https://github.com/hustcc/timeago.js/blob/master/src/utils/date.ts
+export function isSameDate(date1: Date, date2: Date) {
+  return (
+    date1.getUTCDate() === date2.getUTCDate() &&
+    date1.getUTCMonth() === date2.getUTCMonth() &&
+    date1.getUTCFullYear() === date2.getUTCFullYear()
+  );
+}
+
 const relativeTime = new Intl.RelativeTimeFormat("en-US", { numeric: "auto" });
-const units: Array<{ amount: number; name: Intl.RelativeTimeFormatUnit }> = [
-  { amount: 7, name: "days" },
-  { amount: 365 / 12 / 7, name: "weeks" },
-  { amount: 12, name: "months" },
-  { amount: Number.POSITIVE_INFINITY, name: "years" },
-];
 export function timeAgo(date: Date) {
   const startOfDate = new Date(new Date(date).setUTCHours(0, 0, 0, 0));
   const startOfToday = new Date(new Date().setUTCHours(0, 0, 0, 0));
