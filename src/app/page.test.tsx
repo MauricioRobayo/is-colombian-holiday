@@ -44,7 +44,7 @@ describe("Home", () => {
     );
     expect(upcoming.length).toBe(4);
     expect(upcoming[0]).toHaveTextContent(
-      "Monday, March 20, 2023Saint Joseph's Dayin 1 day"
+      "Monday, March 20, 2023Saint Joseph's Daytomorrow"
     );
   });
 });
