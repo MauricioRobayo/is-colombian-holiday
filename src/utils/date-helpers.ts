@@ -1,5 +1,4 @@
 import { FIRST_HOLIDAY_YEAR, LAST_HOLIDAY_YEAR } from "colombian-holidays";
-import { format as timeAgoFormat } from "timeago.js";
 
 export const longDateFormatter = new Intl.DateTimeFormat("en-US", {
   weekday: "long",
@@ -8,11 +7,6 @@ export const longDateFormatter = new Intl.DateTimeFormat("en-US", {
   year: "numeric",
   timeZone: "UTC",
 });
-
-type TimeAgoParams = Parameters<typeof timeAgoFormat>;
-export function timeAgo(...params: TimeAgoParams) {
-  return timeAgoFormat(...params);
-}
 
 export function composeDate(year: number, month: number, day: number) {
   return new Date(parseDate(year, month, day));
