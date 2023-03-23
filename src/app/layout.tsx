@@ -1,4 +1,5 @@
 import { ShareButton } from "@/components/share-button";
+import { Analytics } from "@vercel/analytics/react";
 import { Metadata } from "next";
 import { HiOutlineShare } from "react-icons/hi";
 import { Footer } from "../components/footer";
@@ -18,6 +19,7 @@ export default function RootLayout({
           Share this page <HiOutlineShare />
         </ShareButton>
         <Footer />
+        <Analytics />
       </body>
     </html>
   );
