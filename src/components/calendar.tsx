@@ -1,3 +1,4 @@
+import { isSameDate } from "@/utils/date-helpers";
 import { getMonthDates } from "@/utils/get-month-dates";
 import cn from "clsx";
 import { isHoliday } from "colombian-holidays/lib/utils/isHoliday";
@@ -7,10 +8,9 @@ import { twMerge } from "tailwind-merge";
 interface CalendarProps {
   year: number;
   month: number;
-  day?: number;
   className?: string;
 }
-export function Calendar({ year, month, className, day }: CalendarProps) {
+export function Calendar({ year, month, className }: CalendarProps) {
   const dates = getMonthDates({ year, month });
   const days = ["S", "M", "T", "W", "T", "F", "S"];
   return (
@@ -26,17 +26,20 @@ export function Calendar({ year, month, className, day }: CalendarProps) {
         </div>
       ))}
       {dates.map((date, index) => {
-        const isSelectedDate = date.getUTCDate() === day;
+        const isToday = isSameDate(date, new Date());
         return (
           <div
             key={date.toISOString()}
-            className={cn("rounded-full p-1", {
-              [`col-start-${date.getUTCDay() + 1}`]: index === 0,
-              "bg-violet-600 text-white": isHoliday(date),
-              "text-slate-400 outline outline-orange-600": isSelectedDate,
-            })}
+            className={cn(
+              "grid h-6 w-6 place-content-center rounded-full p-1",
+              {
+                [`col-start-${date.getUTCDay() + 1}`]: index === 0,
+                "bg-violet-600 text-white": isHoliday(date),
+                "outline outline-orange-600": isToday,
+              }
+            )}
           >
-            {isSelectedDate ? (
+            {isToday ? (
               <time dateTime={date.toISOString()}>{date.getUTCDate()}</time>
             ) : (
               <Link

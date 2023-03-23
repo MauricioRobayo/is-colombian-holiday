@@ -17,7 +17,7 @@ export function HolidayListItem({
 }: ListItemProps) {
   const { relativeTime, path } = useMemo(
     () => ({
-      relativeTime: timeAgo.format(date),
+      relativeTime: timeAgo(date),
       path: `/${date
         .toISOString()
         .slice(0, 10)
