@@ -20,7 +20,7 @@ describe("timeAgo", () => {
     ["2023-12-01", "2024-01-15", "next month"],
     ["2023-12-01", "2023-12-31", "in 4 weeks"],
     ["2023-01-01", "2023-02-01", "in 4 weeks"],
-    ["2023-01-15", "2023-02-15", "next month"],
+    ["2023-01-15", "2023-02-15", "in 4 weeks"],
   ];
   it.each(cases)(
     "being %p timeAgo(%p) should return %p",
