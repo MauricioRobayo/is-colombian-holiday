@@ -1,7 +1,5 @@
-import { render, screen } from "@testing-library/react";
 import Home from "@/app/page";
-import { after } from "node:test";
-import exp from "constants";
+import { render, screen } from "@testing-library/react";
 
 beforeEach(() => {
   jest.useFakeTimers();
