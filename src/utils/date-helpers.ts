@@ -1,4 +1,5 @@
 import { FIRST_HOLIDAY_YEAR, LAST_HOLIDAY_YEAR } from "colombian-holidays";
+import { realpath } from "fs";
 
 export const longDateFormatter = new Intl.DateTimeFormat("en-US", {
   weekday: "long",
@@ -8,8 +9,8 @@ export const longDateFormatter = new Intl.DateTimeFormat("en-US", {
   timeZone: "UTC",
 });
 
-// https://github.com/hustcc/timeago.js/blob/master/src/utils/date.ts
-const relativeTime = new Intl.RelativeTimeFormat("en-US");
+// based on https://github.com/hustcc/timeago.js/blob/master/src/utils/date.ts
+const relativeTime = new Intl.RelativeTimeFormat("en-US", { numeric: "auto" });
 const units: Array<{ amount: number; name: Intl.RelativeTimeFormatUnit }> = [
   { amount: 7, name: "days" },
   { amount: 365 / 12 / 7, name: "weeks" },
@@ -19,14 +20,26 @@ const units: Array<{ amount: number; name: Intl.RelativeTimeFormatUnit }> = [
 export function timeAgo(date: Date) {
   const startOfDate = new Date(new Date(date).setUTCHours(0, 0, 0, 0));
   const startOfToday = new Date(new Date().setUTCHours(0, 0, 0, 0));
-  let duration =
+  const yearsDiff =
+    startOfDate.getUTCFullYear() - startOfToday.getUTCFullYear();
+  const monthsDiff =
+    yearsDiff * 12 - startOfToday.getUTCMonth() + startOfDate.getUTCMonth();
+  const daysDiff =
     (startOfDate.getTime() - startOfToday.getTime()) / 1000 / 60 / 60 / 24;
-  for (const { amount, name } of units) {
-    if (Math.abs(duration) < amount) {
-      return relativeTime.format(Math.round(duration), name);
-    }
-    duration /= amount;
+
+  if (Math.abs(daysDiff) < 7) {
+    return relativeTime.format(daysDiff, "days");
   }
+
+  if (Math.abs(daysDiff) <= 31) {
+    return relativeTime.format(Math.round(daysDiff / 7), "weeks");
+  }
+
+  if (Math.abs(monthsDiff) < 12) {
+    return relativeTime.format(monthsDiff, "months");
+  }
+
+  return relativeTime.format(yearsDiff, "years");
 }
 
 export function composeDate(year: number, month: number, day: number) {
