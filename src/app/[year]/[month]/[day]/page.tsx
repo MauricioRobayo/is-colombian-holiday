@@ -1,4 +1,4 @@
-import { CelebrationCard } from "@/components/CelebrationCard";
+import { CelebrationCard } from "@/components/celebration-card";
 import { H1 } from "@/components/h1";
 import { Header } from "@/components/header";
 import { MonthList } from "@/components/month-list";
