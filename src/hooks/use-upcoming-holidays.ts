@@ -3,19 +3,6 @@ import { holidaysWithinInterval } from "colombian-holidays/lib/utils/holidaysWit
 import { useMemo } from "react";
 import { addUpcomingHoliday } from "./use-holidays";
 
-function mockUpcomingHolidayFactory(): ColombianHolidayWithNativeDate {
-  const date = new Date("2023-03-24T00:00:00.000Z");
-  return {
-    celebrationDate: date,
-    date: date,
-    nextMonday: false,
-    name: {
-      en: "mock Holiday",
-      es: "mock Holiday",
-    },
-  };
-}
-
 export function useUpcomingHolidays() {
   return useMemo(getUpcomingHolidays, []);
 }
@@ -28,14 +15,11 @@ export function getUpcomingHolidays() {
   startDate.setUTCFullYear(startDate.getUTCFullYear() - 1);
   endDate.setUTCFullYear(endDate.getUTCFullYear() + 1);
   const holidays = addUpcomingHoliday(
-    [
-      mockUpcomingHolidayFactory(),
-      ...holidaysWithinInterval({
-        start: startDate,
-        end: endDate,
-        valueAsDate: true,
-      }),
-    ].sort((a, b) => a.celebrationDate.getTime() - b.celebrationDate.getTime())
+    holidaysWithinInterval({
+      start: startDate,
+      end: endDate,
+      valueAsDate: true,
+    })
   );
   const startIndex = holidays.findIndex((holiday) => holiday.isUpcoming);
   const endIndex = startIndex + HOLIDAYS_TO_DISPLAY;
