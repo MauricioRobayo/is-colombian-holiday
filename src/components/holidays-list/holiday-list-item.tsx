@@ -1,9 +1,9 @@
-import Link from "next/link";
-import { longDateFormatter, timeAgo } from "@/utils/date-helpers";
-import { useMemo } from "react";
+import { longDateFormatter } from "@/utils/date-helpers";
 import cn from "clsx";
-import { Celebration } from "../celebration";
+import Link from "next/link";
 import { Card, CardProps } from "../card";
+import { Celebration } from "../celebration";
+import { TimeAgo } from "../time-ago";
 
 export interface ListItemProps {
   date: Date;
@@ -15,18 +15,13 @@ export function HolidayListItem({
   name,
   variant = "default",
 }: ListItemProps) {
-  const { relativeTime, path } = useMemo(
-    () => ({
-      relativeTime: timeAgo.format(date),
-      path: `/${date
-        .toISOString()
-        .slice(0, 10)
-        .split("-")
-        .map(Number)
-        .join("/")}`,
-    }),
-    [date]
-  );
+  const path = `/${date
+    .toISOString()
+    .slice(0, 10)
+    .split("-")
+    .map(Number)
+    .join("/")}`;
+
   return (
     <Card variant={variant} as="li">
       <Link href={path} className="flex flex-col justify-center gap-2">
@@ -47,11 +42,11 @@ export function HolidayListItem({
             <div>{name}</div>
             {variant === "highlight" ? (
               <Celebration className="h-6 gap-2 text-sm">
-                {relativeTime}
+                <TimeAgo date={date} data-superjson />
               </Celebration>
             ) : (
               <div className={cn({ "text-slate-400": variant !== "dim" })}>
-                {relativeTime}
+                <TimeAgo date={date} data-superjson />
               </div>
             )}
           </div>
