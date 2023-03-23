@@ -19,7 +19,6 @@
     "colombian-holidays": "^4.1.1",
     "eslint": "8.36.0",
     "eslint-config-next": "13.2.4",
-    "javascript-time-ago": "^2.5.9",
     "next": "13.2.4",
     "postcss": "^8.4.21",
     "react": "18.2.0",

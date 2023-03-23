@@ -1,6 +1,4 @@
 import { FIRST_HOLIDAY_YEAR, LAST_HOLIDAY_YEAR } from "colombian-holidays";
-import TimeAgo from "javascript-time-ago";
-import en from "javascript-time-ago/locale/en";
 
 export const longDateFormatter = new Intl.DateTimeFormat("en-US", {
   weekday: "long",
@@ -10,8 +8,26 @@ export const longDateFormatter = new Intl.DateTimeFormat("en-US", {
   timeZone: "UTC",
 });
 
-TimeAgo.addDefaultLocale(en);
-export const timeAgo = new TimeAgo("en-US");
+// https://github.com/hustcc/timeago.js/blob/master/src/utils/date.ts
+const relativeTime = new Intl.RelativeTimeFormat("en-US");
+const units: Array<{ amount: number; name: Intl.RelativeTimeFormatUnit }> = [
+  { amount: 7, name: "days" },
+  { amount: 365 / 12 / 7, name: "weeks" },
+  { amount: 12, name: "months" },
+  { amount: Number.POSITIVE_INFINITY, name: "years" },
+];
+export function timeAgo(date: Date) {
+  const startOfDate = new Date(new Date(date).setUTCHours(0, 0, 0, 0));
+  const today = new Date();
+  let duration =
+    (startOfDate.getTime() - today.getTime()) / 1000 / 60 / 60 / 24;
+  for (const { amount, name } of units) {
+    if (Math.abs(duration) < amount) {
+      return relativeTime.format(Math.round(duration), name);
+    }
+    duration /= amount;
+  }
+}
 
 export function composeDate(year: number, month: number, day: number) {
   return new Date(parseDate(year, month, day));
