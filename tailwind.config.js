@@ -4,10 +4,5 @@ module.exports = {
   theme: {
     extend: {},
   },
-  safelist: [
-    {
-      pattern: /col-start-./,
-    },
-  ],
   plugins: [],
 };

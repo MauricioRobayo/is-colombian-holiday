@@ -16,8 +16,8 @@ export function Calendar({ year, month, className }: CalendarProps) {
   return (
     <div
       className={twMerge(
-        "place-center mx-auto grid w-fit grid-cols-[repeat(7,auto)] justify-center gap-y-1 gap-x-2 rounded-lg bg-white p-4 text-xs",
-        className
+        "place-center mx-auto grid w-fit grid-cols-[repeat(7,auto)] justify-center gap-x-2 gap-y-1 rounded-lg bg-white p-4 text-xs",
+        className,
       )}
     >
       {days.map((day) => (
@@ -26,6 +26,15 @@ export function Calendar({ year, month, className }: CalendarProps) {
         </div>
       ))}
       {dates.map((date, index) => {
+        const colStarts = [
+          "col-start-1",
+          "col-start-2",
+          "col-start-3",
+          "col-start-4",
+          "col-start-5",
+          "col-start-6",
+        ];
+
         const isToday = isSameDate(date, new Date());
         return (
           <div
@@ -33,10 +42,10 @@ export function Calendar({ year, month, className }: CalendarProps) {
             className={cn(
               "grid h-6 w-6 place-content-center rounded-full p-1",
               {
-                [`col-start-${date.getUTCDay() + 1}`]: index === 0,
+                [colStarts[date.getUTCDay()]]: index === 0,
                 "bg-violet-600 text-white": isHoliday(date),
-                "outline outline-orange-600": isToday,
-              }
+                " outline    outline-orange-600": isToday,
+              },
             )}
           >
             {isToday ? (
