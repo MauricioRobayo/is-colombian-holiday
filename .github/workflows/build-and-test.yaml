@@ -9,20 +9,11 @@ jobs:
     name: Build, lint, and test
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: pnpm/action-setup@v2
-        name: Install pnpm
-        id: pnpm-install
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          version: 7
-          run_install: true
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 18
-          cache: "pnpm"
-      - name: Lint
-        run: pnpm run lint
-      - name: Test
-        run: pnpm run test --ci
-      - name: Build
-        run: pnpm run build
+          node-version: 20
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run test --ci
+      - run: npm run build

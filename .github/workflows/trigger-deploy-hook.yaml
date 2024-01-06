@@ -7,13 +7,9 @@ jobs:
   trigger-deploy-hook:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: pnpm/action-setup@v2.2.4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          version: 7
-      - uses: actions/setup-node@v3
-        with:
-          node-version: "16"
-          cache: "pnpm"
-      - run: pnpm install
+          node-version: 20
+      - run: npm ci
       - run: node ./scripts/exponential-retry-back-off.js ${{ secrets.DEPLOYMENT_HOOK_URL }}
