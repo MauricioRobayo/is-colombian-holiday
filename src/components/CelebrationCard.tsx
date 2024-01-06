@@ -11,7 +11,7 @@ interface CelebrationCardProps {
 }
 export function CelebrationCard({
   children,
-  title = "Is Holiday!",
+  title = "It is holiday!",
   className,
 }: CelebrationCardProps) {
   return (

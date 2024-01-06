@@ -106,7 +106,7 @@ export function generateMetadata({
   const date = composeDate(
     Number(params.year),
     Number(params.month),
-    Number(params.day)
+    Number(params.day),
   );
   const formattedDate = longDateFormatter.format(date);
   const searchParams = new URLSearchParams({
