@@ -47,7 +47,7 @@ export default function handler(req: NextRequest) {
               }}
             >
               <div tw="text-7xl font-bold" style={{ fontWeight: "bold" }}>
-                {holiday ? "🎆 It is Holiday! 🎆" : "It is not Holiday."}
+                {holiday ? "🎆 It is holiday! 🎆" : "It is not holiday."}
               </div>
               <div tw="text-7xl">{isHoliday(date) ? "😀" : "😢"}</div>
               <div
