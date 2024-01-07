@@ -16,16 +16,20 @@ export function Nav({ prev, next, className, children }: NavProps) {
   return (
     <div className={twMerge("flex items-center justify-between", className)}>
       <div>
-        <Link href={`/${prev.path.replace(/^\//, "")}`} scroll={false}>
+        <Link href={buildAbsolutePath(prev.path)} scroll={false}>
           &larr; {prev.name}
         </Link>
       </div>
       {children && <div>{children}</div>}
       <div>
-        <Link href={`/${next.path.replace(/^\//, "")}`} scroll={false}>
+        <Link href={buildAbsolutePath(next.path)} scroll={false}>
           {next.name} &rarr;
         </Link>
       </div>
     </div>
   );
+}
+
+function buildAbsolutePath(path: string) {
+  return `/${path.replace(/^\//, "")}`;
 }
