@@ -69,7 +69,7 @@ export default function Day({ params }: DayProps) {
         ]}
       />
       <Wrapper as="main" className="my-8">
-        <H1>Is {longFormattedDate} holiday in Colombia?</H1>
+        <H1>{longFormattedDate}</H1>
         {holiday ? (
           <CelebrationCard>
             <div>
