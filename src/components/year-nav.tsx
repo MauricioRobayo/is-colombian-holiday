@@ -26,12 +26,12 @@ export function YearNav({
       next={nextYear}
       className={twMerge(
         "items-center justify-around gap-8 text-lg font-bold text-violet-400",
-        className
+        className,
       )}
     >
       <div className="text-4xl text-white">
         {selectedMonth ? (
-          <Link href={`/${String(selectedYear)}`}>
+          <Link href={`/${selectedYear}`}>
             <div>{selectedYear}</div>
           </Link>
         ) : (
