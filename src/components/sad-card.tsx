@@ -9,7 +9,7 @@ interface SadCardProps {
   children?: ReactNode;
 }
 export function SadCard({
-  title = "It is not a holiday.",
+  title = "It is not holiday.",
   className,
   children,
 }: SadCardProps) {
