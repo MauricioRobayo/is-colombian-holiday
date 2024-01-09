@@ -46,10 +46,6 @@ export default function handler(req: NextRequest) {
                 borderRadius: "32px",
               }}
             >
-              <div tw="text-7xl font-bold" style={{ fontWeight: "bold" }}>
-                {holiday ? "🎆 It is holiday! 🎆" : "It is not holiday."}
-              </div>
-              <div tw="text-7xl">{isHoliday(date) ? "😀" : "😢"}</div>
               <div
                 style={{
                   display: "flex",
@@ -61,6 +57,10 @@ export default function handler(req: NextRequest) {
               >
                 <div>{formattedDate}</div>
                 {holiday ? <div>{holiday.name.en}</div> : null}
+              </div>
+              <div tw="text-7xl">{isHoliday(date) ? "😀" : "😢"}</div>
+              <div tw="text-7xl font-bold" style={{ fontWeight: "bold" }}>
+                {holiday ? "🎆 It is holiday! 🎆" : "It is not holiday."}
               </div>
             </div>
           </div>
